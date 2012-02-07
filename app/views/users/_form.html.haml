@@ -1,4 +1,4 @@
-= form_for(user, :url => (user.new_record? ? ezadmin_users_url : ezadmin_user_url(user))) do |f|
+= form_for(user, :url => (user.new_record? ? users_url : user_url(user))) do |f|
   %table.styled
     %tbody
       %tr
@@ -22,7 +22,7 @@
         %td
           - unless user.new_record?
             .right
-              = link_to "删除", ezadmin_user_url(user), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+              = link_to "删除", user_url(user), :title => "删除", :method => "delete", :confirm => "点击确定继续"
           = submit_tag("确定", :class => "submit")
           = link_to "返回", :back
             

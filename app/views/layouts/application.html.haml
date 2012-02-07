@@ -3,7 +3,7 @@
   %head
     %title= site_title
     %meta{'http-equiv' => "content-type", :content => "text/html; charset=UTF-8"}
-    = stylesheet_link_tag :admin
+    = stylesheet_link_tag :application
     = javascript_include_tag :application
     = csrf_meta_tag
     = yield :header
@@ -12,21 +12,21 @@
       .layout
         .topnav
           .right
-            = link_to "退出", ezadmin_logout_url
+            = link_to "退出", logout_url
         .logo
           = image_tag("adminlogo.png")
         .nav
           %ul
             %li
-              = link_to "管理首页", ezadmin_dashboard_url, :class => admin_nav?("index")
+              = link_to "管理首页", root_url, :class => admin_nav?("index")
             %li
-              = link_to "用户管理", ezadmin_users_url, :class => admin_nav?("users")
+              = link_to "用户管理", users_url, :class => admin_nav?("users")
             %li
               = link_to "商家管理", "", :class => admin_nav?("")
             %li
               = link_to "设计师管理", "", :class => admin_nav?("")
             %li
-              = link_to "时尚信息管理", ezadmin_articles_url, :class => admin_nav?("articles")
+              = link_to "时尚信息管理", articles_url, :class => admin_nav?("articles")
             %li
               = link_to "活动管理", "", :class => admin_nav?("")
             %li

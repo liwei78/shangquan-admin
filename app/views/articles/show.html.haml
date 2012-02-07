@@ -26,5 +26,5 @@
         %td{:colspan => 3}
           .right
             = link_to "返回", :back
-          = link_to "编辑", edit_ezadmin_article_url(@article)
-          = link_to "删除", ezadmin_article_url(@article), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_article_url(@article)
+          = link_to "删除", article_url(@article), :title => "删除", :method => "delete", :confirm => "点击确定继续"

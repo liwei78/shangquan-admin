@@ -14,9 +14,9 @@
       - for article in @articles
         %tr
           %td
-            = link_to article.title, ezadmin_article_url(article)
+            = link_to article.title, article_url(article)
           %td
-            = link_to "编辑", edit_ezadmin_article_url(article)
+            = link_to "编辑", edit_article_url(article)
     %tfoot
       %tr
         %td{:colspan => 3}

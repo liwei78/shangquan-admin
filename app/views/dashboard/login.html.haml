@@ -3,8 +3,8 @@
   %head
     %title= site_title
     %meta{'http-equiv' => "content-type", :content => "text/html; charset=UTF-8"}
-    = stylesheet_link_tag "admin"
-    = javascript_include_tag :admin
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
     = csrf_meta_tag
     = yield :header
   %body
@@ -15,7 +15,7 @@
         .nav
           %ul
             %li
-              = link_to "登录", ezadmin_login_url
+              = link_to "登录", login_url
             .clearfix
     .mainbox
       .login-layout
@@ -23,7 +23,7 @@
           - unless flash[:error].nil?
             .error
               = flash[:error]
-          = form_tag(ezadmin_checklogin_url) do
+          = form_tag(checklogin_url) do
             .tr
               管理账号
               %br

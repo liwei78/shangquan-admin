@@ -1,7 +1,6 @@
 #encoding: utf-8
-class Ezadmin::ArticlesController < ApplicationController
+class ArticlesController < ApplicationController
   before_filter :set_admin_nav_flag
-  layout "admin"
   
   def index
     @articles = Article.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
@@ -31,7 +30,7 @@ class Ezadmin::ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         flash[:notice] = '添加成功'
-        format.html { redirect_to(ezadmin_articles_url) }
+        format.html { redirect_to(articles_url) }
       else
         format.html { render :action => "new" }
       end
@@ -44,7 +43,7 @@ class Ezadmin::ArticlesController < ApplicationController
     respond_to do |format|
       if @article.update_attributes(params[:article])
         flash[:notice] = '编辑成功'
-        format.html { redirect_to(ezadmin_articles_url) }
+        format.html { redirect_to(articles_url) }
       else
         format.html { render :action => "edit" }
       end
@@ -56,7 +55,7 @@ class Ezadmin::ArticlesController < ApplicationController
     @article.destroy
     respond_to do |format|
       flash[:notice] = '删除成功'
-      format.html { redirect_to(ezadmin_articles_url) }
+      format.html { redirect_to(articles_url) }
     end
   end
   

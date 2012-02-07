@@ -1,7 +1,6 @@
 #encoding: utf-8
-class Ezadmin::UsersController < ApplicationController
+class UsersController < ApplicationController
   before_filter :set_admin_nav_flag
-  layout "admin"
   
   def index
     @users = User.paginate(:page => params[:user], :per_page => 50, :order => "id desc")
@@ -31,7 +30,7 @@ class Ezadmin::UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         flash[:notice] = '添加成功'
-        format.html { redirect_to(ezadmin_users_url) }
+        format.html { redirect_to(users_url) }
       else
         format.html { render :action => "new" }
       end
@@ -44,7 +43,7 @@ class Ezadmin::UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = '编辑成功'
-        format.html { redirect_to(ezadmin_users_url) }
+        format.html { redirect_to(users_url) }
       else
         format.html { render :action => "edit" }
       end
@@ -56,7 +55,7 @@ class Ezadmin::UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       flash[:notice] = '删除成功'
-      format.html { redirect_to(ezadmin_users_url) }
+      format.html { redirect_to(users_url) }
     end
   end
   
