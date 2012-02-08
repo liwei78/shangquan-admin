@@ -1,14 +1,14 @@
-= form_for(user, :url => (user.new_record? ? users_url : user_url(user))) do |f|
+= form_for(user) do |f|
   %table.styled
     %tbody
       %tr
         %td
-          登陆账号
+          登录账号
         %td
           = f.text_field :email, :class => "input"
       %tr
         %td
-          登陆密码
+          登录密码
         %td
           = f.password_field :password, :class => "input"
       %tr

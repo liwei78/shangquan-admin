@@ -18,11 +18,12 @@
               = link_to "登录", login_url
             .clearfix
     .mainbox
+      - unless flash[:error].nil?
+        .noticediv
+          .login-layout
+            = flash[:error]
       .login-layout
         .login-form
-          - unless flash[:error].nil?
-            .error
-              = flash[:error]
           = form_tag(checklogin_url) do
             .tr
               管理账号

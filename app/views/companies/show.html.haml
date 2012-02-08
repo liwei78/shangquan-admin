@@ -1,0 +1,32 @@
+.banner
+  .layout
+    .title
+      查看商家
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  %table.styled
+    %tbody
+      %tr
+        %td{:width => "20%"}
+          标题
+        %td
+          = @company.title
+      %tr
+        %td
+          地址
+        %td
+          = @company.address
+      %tr
+        %td
+          电话
+        %td
+          = @company.telphone
+    %tfoot
+      %tr
+        %td{:colspan => 3}
+          = link_to "编辑", edit_company_url(@company)
+          = link_to "删除", company_url(@company), :title => "删除", :method => "delete", :confirm => "点击确定继续"

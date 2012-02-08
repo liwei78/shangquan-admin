@@ -1,6 +1,7 @@
 #encoding: utf-8
 class ArticlesController < ApplicationController
   before_filter :set_admin_nav_flag
+  before_filter :need_admin_login
   
   def index
     @articles = Article.paginate(:page => params[:page], :per_page => 20, :order => "id desc")

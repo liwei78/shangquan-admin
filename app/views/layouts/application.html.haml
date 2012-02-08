@@ -22,7 +22,7 @@
             %li
               = link_to "用户管理", users_url, :class => admin_nav?("users")
             %li
-              = link_to "商家管理", "", :class => admin_nav?("")
+              = link_to "商家管理", companies_url, :class => admin_nav?("companies")
             %li
               = link_to "设计师管理", "", :class => admin_nav?("")
             %li
@@ -41,9 +41,6 @@
               = link_to "动态管理", "", :class => admin_nav?("")
             .clearfix
     .mainbox
-      - unless flash[:notice].nil?
-        .notice
-          = flash[:notice]
       = yield
     .footer
       &copy 2012

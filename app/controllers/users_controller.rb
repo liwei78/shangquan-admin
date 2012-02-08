@@ -1,9 +1,10 @@
 #encoding: utf-8
 class UsersController < ApplicationController
   before_filter :set_admin_nav_flag
+  before_filter :need_admin_login
   
   def index
-    @users = User.paginate(:page => params[:user], :per_page => 50, :order => "id desc")
+    @users = User.paginate(:page => params[:page], :per_page => 10, :order => "id desc")
     respond_to do |format|
       format.html
     end
@@ -60,7 +61,6 @@ class UsersController < ApplicationController
   end
   
   private
-  
   def set_admin_nav_flag
     @admin_nav_flag = "users"
   end

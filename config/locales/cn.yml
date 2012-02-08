@@ -197,10 +197,12 @@ cn:
 
   activerecord:
     models:
-      person: "人员"
+      user: "用户"
     attributes:
-      person:
-        name: "姓名"
+      user:
+        email: "登录账号"
+        password: "登录密码"
+        name: "显示名称"
     errors:
       full_messages:
         format: "%{attribute} %{message}"

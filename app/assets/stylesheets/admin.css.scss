@@ -129,17 +129,44 @@ ul, ol {
       padding: 5px 10px;
       font-size: 14px;
       border-radius: 4px 4px 4px 4px;
+      cursor: hand;
+    }
+    .validation-error {
+      color: red;
     }
   }
 }
 
-.error, .notice {
+.errordiv {
   height: 40px;
   line-height: 40px;
-  background: image-url('info.png') no-repeat 8px 50% #E8F6FF;
   border: 1px solid #B8E2FB;
-  padding-left: 32px;
   margin-bottom: 20px;
+  background-color: #E8F6FF;
+  .layout {
+    background: image-url('info.png') no-repeat 8px 50% #E8F6FF;
+    padding-left: 32px;
+  }
+  .login-layout {
+    background: image-url('info.png') no-repeat 8px 50% #E8F6FF;
+    padding-left: 32px;
+  }
+}
+
+.noticediv {
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #B8E2FB;
+  margin-bottom: 20px;
+  background-color: #E8F6FF;
+  .layout {
+    background: image-url('info.png') no-repeat 8px 50% #E8F6FF;
+    padding-left: 32px;
+  }
+  .login-layout {
+    background: image-url('info.png') no-repeat 8px 50% #E8F6FF;
+    padding-left: 32px;
+  }
 }
 
 .mainbox {
@@ -156,7 +183,6 @@ ul, ol {
     line-height: 50px;
   }
 }
-
 
 table.styled {
   border-collapse: collapse;
@@ -209,9 +235,9 @@ table.styled {
   }
 }
 
-
 .pagination {
   height: 23px;
+  font-size: 12px;
   span.previous_page, span.next_page {
     padding: 3px 6px;
   }

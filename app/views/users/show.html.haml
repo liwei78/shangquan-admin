@@ -2,18 +2,17 @@
   .layout
     .title
       查看用户
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
 .layout
   %table.styled
-    %thead
-      %tr
-        %th
-          
-        %th
-          
     %tbody
       %tr
-        %td
-          登陆账号
+        %td{:width => "20%"}
+          登录账号
         %td
           = @user.email
       %tr
