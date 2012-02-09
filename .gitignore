@@ -13,3 +13,5 @@ doc/app
 Gemfile
 Gemfile.lock
 db/schema.rb
+config/database.yml
+public/assets/
