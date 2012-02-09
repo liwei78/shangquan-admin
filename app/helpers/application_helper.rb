@@ -13,4 +13,8 @@ module ApplicationHelper
     %(#{html_tag}<span class="validation-error">&nbsp;#{errors}</span>).html_safe
   end
   
+  def nbsp(n=1)
+    raw "&nbsp;"*n
+  end
+  
 end

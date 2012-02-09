@@ -3,6 +3,7 @@
     .title
       时尚信息管理
 .layout
+  .h20
   %table.styled
     %thead
       %tr
@@ -19,5 +20,5 @@
             = link_to "编辑", edit_article_url(article)
     %tfoot
       %tr
-        %td{:colspan => 3}
+        %td{:colspan => 2}
           = will_paginate @articles, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"

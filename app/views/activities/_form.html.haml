@@ -1,4 +1,4 @@
-= form_for(company) do |f|
+= form_for(activity) do |f|
   %table.styled
     %tbody
       %tr
@@ -6,6 +6,11 @@
           标题
         %td
           = f.text_field :title, :class => "input medium"
+      %tr
+        %td
+          时间
+        %td
+          = f.text_field :time, :class => "input medium"
       %tr
         %td
           地址
@@ -18,16 +23,16 @@
           = f.text_field :telphone, :class => "input medium"
       %tr
         %td
-          介绍
+          详情
         %td
-          = f.cktext_area("intro", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Basic')
+          = f.cktext_area("content", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Basic')
       %tr
         %td
           
         %td
-          - unless company.new_record?
+          - unless activity.new_record?
             .right
-              = link_to "删除", company_url(company), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+              = link_to "删除", activity_url(activity), :title => "删除", :method => "delete", :confirm => "点击确定继续"
           = submit_tag("确定", :class => "submit")
           = link_to "返回", :back
             

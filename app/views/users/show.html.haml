@@ -22,6 +22,8 @@
           = @user.name
     %tfoot
       %tr
-        %td{:colspan => 3}
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", user_url(@user), :title => "删除", :method => "delete", :confirm => "点击确定继续"
           = link_to "编辑", edit_user_url(@user)
-          = link_to "删除", user_url(@user), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          

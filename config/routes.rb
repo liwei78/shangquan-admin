@@ -5,6 +5,7 @@ Admin::Application.routes.draw do
   resources :users
   resources :articles
   resources :companies
+  resources :activities
   
   match 'login'      => 'dashboard#login',      :as => :login,       :via => :get
   match 'checklogin' => 'dashboard#checklogin', :as => :checklogin,  :via => :post

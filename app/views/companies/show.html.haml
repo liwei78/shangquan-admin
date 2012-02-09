@@ -25,8 +25,15 @@
           电话
         %td
           = @company.telphone
+      %tr
+        %td
+          介绍
+        %td
+          = html_escape(raw(@company.intro))
     %tfoot
       %tr
-        %td{:colspan => 3}
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", company_url(@company), :title => "删除", :method => "delete", :confirm => "点击确定继续"
           = link_to "编辑", edit_company_url(@company)
-          = link_to "删除", company_url(@company), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          

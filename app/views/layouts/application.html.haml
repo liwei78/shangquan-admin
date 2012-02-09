@@ -28,7 +28,7 @@
             %li
               = link_to "时尚信息管理", articles_url, :class => admin_nav?("articles")
             %li
-              = link_to "活动管理", "", :class => admin_nav?("")
+              = link_to "活动管理", activities_url, :class => admin_nav?("activities")
             %li
               = link_to "相册管理", "", :class => admin_nav?("")
             %li
@@ -42,6 +42,7 @@
             .clearfix
     .mainbox
       = yield
+    .h20
     .footer
       &copy 2012
       = site_title

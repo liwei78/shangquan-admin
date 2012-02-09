@@ -1,7 +1,7 @@
 .banner
   .layout
     .title
-      商家管理
+      活动管理
 - unless flash[:notice].nil?
   .noticediv
     .layout
@@ -18,17 +18,17 @@
           %th
             管理
       %tbody
-        - for company in @companies
+        - for activity in @activities
           %tr
             %td
-              = link_to company.title, company_url(company)
+              = link_to activity.title, activity_url(activity)
             %td
-              = link_to "编辑", edit_company_url(company)
+              = link_to "编辑", edit_activity_url(activity)
       %tfoot
         %tr
           %td{:colspan => 2}
-            = will_paginate @companies, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+            = will_paginate @activities, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
           
   .siderbox.right
-    = link_to raw("<strong>添加</strong>"), new_company_url, :class => "add-link"
+    = link_to raw("<strong>添加</strong>"), new_activity_url, :class => "add-link"
   .clearfix
