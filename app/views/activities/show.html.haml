@@ -17,9 +17,14 @@
           = @activity.title
       %tr
         %td
-          时间
+          活动时间
         %td
-          = @activity.time
+          = @activity.schedule
+      %tr
+        %td
+          活动商场
+        %td
+          = @activity.place
       %tr
         %td
           地址
@@ -32,9 +37,24 @@
           = @activity.telphone
       %tr
         %td
+          营业时间
+        %td
+          = @activity.office_time
+      %tr
+        %td
+          公交信息
+        %td
+          = @activity.bus_info
+      %tr
+        %td
           详情
         %td
           = html_escape(raw(@activity.content))
+      %tr
+        %td
+          海报
+        %td
+          = image_tag(@activity.poster.url)
     %tfoot
       %tr
         %td{:colspan => 2}

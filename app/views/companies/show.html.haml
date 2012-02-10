@@ -16,6 +16,11 @@
         %td
           = @company.title
       %tr
+        %td{:width => "20%"}
+          别名
+        %td
+          = @company.other_title
+      %tr
         %td
           地址
         %td
@@ -27,9 +32,19 @@
           = @company.telphone
       %tr
         %td
+          营业时间
+        %td
+          = @company.office_time
+      %tr
+        %td
+          公交信息
+        %td
+          = @company.bus_info
+      %tr
+        %td
           介绍
         %td
-          = html_escape(raw(@company.intro))
+          = raw(@company.content)
     %tfoot
       %tr
         %td{:colspan => 2}
