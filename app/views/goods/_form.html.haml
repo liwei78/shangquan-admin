@@ -1,0 +1,45 @@
+= form_for(good) do |f|
+  %table.styled
+    %tbody
+      %tr
+        %td
+          标题
+        %td
+          = f.text_field :title, :class => "input medium"
+      %tr
+        %td
+          价格
+        %td
+          = f.text_field :price, :class => "input small"
+          元
+      %tr
+        %td
+          品牌
+        %td
+          = f.select :brand_id, Brand.list_for_select
+      %tr
+        %td
+          喜欢
+        %td
+          = f.text_field :likes_count, :class => "input small"
+          次
+      %tr
+        %td
+          海报
+        %td
+          - unless good.new_record?
+            = image_tag(good.poster.url(:small))
+            %br
+          = f.file_field :poster
+      %tr
+        %td
+          
+        %td
+          - unless good.new_record?
+            .right
+              = link_to "删除", good_url(good), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = submit_tag("确定", :class => "submit")
+          = link_to "返回", :back
+            
+          
+            

@@ -1,0 +1,43 @@
+= form_for(brand) do |f|
+  %table.styled
+    %tbody
+      %tr
+        %td
+          标题
+        %td
+          = f.text_field :title, :class => "input medium"
+      %tr
+        %td
+          国家
+        %td
+          = f.select :nation, [["其他", 0], ["欧美", 1], ["中国", 2], ["日本", 3], ["韩国", 4]]
+      %tr
+        %td
+          字母
+        %td
+          = f.select :letter, ['A','B','C']
+      %tr
+        %td
+          分类
+        %td
+          = f.select :category_id, [['服装', 1], ['化妆品',2], ['其他', 0]]
+      %tr
+        %td
+          海报
+        %td
+          - unless brand.new_record?
+            = image_tag(brand.poster.url(:small))
+            %br
+          = f.file_field :poster
+      %tr
+        %td
+          
+        %td
+          - unless brand.new_record?
+            .right
+              = link_to "删除", brand_url(brand), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = submit_tag("确定", :class => "submit")
+          = link_to "返回", :back
+            
+          
+            

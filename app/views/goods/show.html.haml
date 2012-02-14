@@ -1,0 +1,47 @@
+.banner
+  .layout
+    .title
+      查看活动
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  %table.styled
+    %tbody
+      %tr
+        %td{:width => "20%"}
+          标题
+        %td
+          = @good.title
+      %tr
+        %td
+          价格
+        %td
+          = @good.price
+          元
+      %tr
+        %td
+          品牌
+        %td
+          = @good.brand.title
+      %tr
+        %td
+          
+        %td
+          喜欢
+          = @good.likes_count
+          次
+      %tr
+        %td
+          海报
+        %td
+          = image_tag(@good.poster.url)
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", good_url(@good), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_good_url(@good)
+          

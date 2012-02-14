@@ -46,7 +46,7 @@
           海报
         %td
           - unless activity.new_record?
-            = image_tag(@activity.poster.url(:small))
+            = image_tag(activity.poster.url(:small))
             %br
           = f.file_field :poster
       %tr

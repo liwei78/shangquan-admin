@@ -1,0 +1,34 @@
+.banner
+  .layout
+    .title
+      列表
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  .h20
+  .widebox.left
+    %table.styled
+      %thead
+        %tr
+          %th
+            名称
+          %th
+            管理
+      %tbody
+        - for brand in @brands
+          %tr
+            %td
+              = link_to brand.title, brand_url(brand)
+            %td
+              = link_to "编辑", edit_brand_url(brand)
+      %tfoot
+        %tr
+          %td{:colspan => 2}
+            = will_paginate @brands, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+          
+  .siderbox.right
+    = link_to raw("<strong>添加</strong>"), new_brand_url, :class => "add-link"
+  .clearfix

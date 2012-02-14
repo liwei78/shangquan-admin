@@ -1,0 +1,44 @@
+.banner
+  .layout
+    .title
+      查看活动
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  %table.styled
+    %tbody
+      %tr
+        %td{:width => "20%"}
+          标题
+        %td
+          = @brand.title
+      %tr
+        %td
+          国家
+        %td
+          = ['其他', '欧美', '中国', '日本', '韩国'][@brand.nation]
+      %tr
+        %td
+          字母
+        %td
+          = @brand.letter
+      %tr
+        %td
+          分类
+        %td
+          = ['其他', '服装', '化妆品'][@brand.category_id]
+      %tr
+        %td
+          海报
+        %td
+          = image_tag(@brand.poster.url)
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", brand_url(@brand), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_brand_url(@brand)
+          
