@@ -1,11 +1,14 @@
 settings: &common
-  site_title: '商圈管理平台'
-  admin_key: 'china'
-  admin_account: 'admin'
+  site_title:     '商圈管理平台'
+  admin_key:      'china'
+  admin_account:  'admin'
   admin_password: 'changchun'
+  article_type:   [['文章', 0], ['照片', 1], ['视频', 2]]
+  company_type:   [['其他', 0], ['百货商场', 1], ['专卖店', 2], ['美食', 3], ['电子商务', 4]]
+  activity_type:   [['其他', 0], ['商场活动', 1], ['品牌活动', 2], ['美食活动', 3], ['电商活动', 4]]
   
 development:
-  paperclip_url:  "http://localhost:3000/upload_files/:class/:attachment/:id/:style/:filename"
+  paperclip_url:  "http://localhost:4000/upload_files/:class/:attachment/:id/:style/:filename"
   paperclip_path: ":rails_root/public/upload_files/:class/:attachment/:id/:style/:filename"
   <<: *common
 production:

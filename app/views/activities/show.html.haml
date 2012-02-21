@@ -49,7 +49,7 @@
         %td
           详情
         %td
-          = html_escape(raw(@activity.content))
+          = @activity.content.html_safe
       %tr
         %td
           海报

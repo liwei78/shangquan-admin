@@ -3,6 +3,11 @@
     %tbody
       %tr
         %td
+          活动类型
+        %td
+          = f.select :activity_type, SITE_SETTINGS['activity_type']
+      %tr
+        %td
           标题
         %td
           = f.text_field :title, :class => "input medium"
@@ -11,6 +16,11 @@
           活动时间
         %td
           = f.text_field :schedule, :class => "input medium"
+      %tr
+        %td
+          折扣
+        %td
+          = f.text_field :discount, :class => "input medium"
       %tr
         %td
           活动商场
@@ -36,6 +46,11 @@
           公交信息
         %td
           = f.text_field :bus_info, :class => "input medium"
+      %tr
+        %td
+          网站
+        %td
+          = f.text_field :website, :class => "input medium"
       %tr
         %td
           详情

@@ -8,6 +8,11 @@
           = f.text_field :title, :class => "input fullwidth"
       %tr
         %td
+          类型
+        %td
+          = f.select :article_type, SITE_SETTINGS['article_type']
+      %tr
+        %td
           内容
         %td
           = f.cktext_area("content", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Basic')

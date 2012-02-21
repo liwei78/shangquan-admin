@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     
   validates :name,
     :presence => true,
-    :length => {:maximum => 16, :minimum => 3},
+    :length => {:maximum => 16, :minimum => 1},
     :allow_blank => true
     
   validates :signcode,   :uniqueness => true

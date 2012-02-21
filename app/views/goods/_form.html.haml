@@ -25,10 +25,16 @@
           次
       %tr
         %td
+          评论
+        %td
+          = f.text_field :comments_count, :class => "input small"
+          条
+      %tr
+        %td
           海报
         %td
           - unless good.new_record?
-            = image_tag(good.poster.url(:small))
+            = image_tag(good.poster.url(:thumb))
             %br
           = f.file_field :poster
       %tr

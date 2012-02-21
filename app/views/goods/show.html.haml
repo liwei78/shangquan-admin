@@ -25,7 +25,7 @@
         %td
           品牌
         %td
-          = @good.brand.title
+          = @good.brand.title if @good.brand_id.present?
       %tr
         %td
           

@@ -20,7 +20,7 @@
         %td
           内容
         %td
-          = html_escape(raw(@article.content))
+          = @article.content.html_safe
     %tfoot
       %tr
         %td{:colspan => 3}

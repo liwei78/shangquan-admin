@@ -3,6 +3,11 @@
     %tbody
       %tr
         %td
+          商家类型
+        %td
+          = f.select :company_type, SITE_SETTINGS['company_type']
+      %tr
+        %td
           标题
         %td
           = f.text_field :title, :class => "input medium"
@@ -31,6 +36,11 @@
           公交信息
         %td
           = f.text_field :bus_info, :class => "input medium"
+      %tr
+        %td
+          网站
+        %td
+          = f.text_field :website, :class => "input medium"
       %tr
         %td
           介绍
