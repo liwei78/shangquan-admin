@@ -17,6 +17,16 @@
           = @activity.title
       %tr
         %td
+          分类
+        %td
+          = @activity.activity_category
+      %tr
+        %td
+          地区
+        %td
+          = @activity.activity_area
+      %tr
+        %td
           活动时间
         %td
           = @activity.schedule
@@ -45,6 +55,12 @@
           公交信息
         %td
           = @activity.bus_info
+      %tr
+        %td
+          标签
+        %td
+          - for tag in @activity.tag_list
+            = tag
       %tr
         %td
           详情

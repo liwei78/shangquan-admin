@@ -1,5 +1,13 @@
 Admin::Application.routes.draw do
 
+  resources :company_areas
+
+  resources :activity_areas
+
+  resources :company_categories
+
+  resources :activity_categories
+
   mount Ckeditor::Engine => '/ckeditor'
   
   resources :users

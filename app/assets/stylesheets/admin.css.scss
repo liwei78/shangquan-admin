@@ -280,15 +280,17 @@ table.styled {
 }
 
 .siderbox {
+  .mb {
+    margin-bottom: 10px;
+  }
   width: 230px;
   .add-link {
-    width: 96%;
     height: 30px;
     line-height: 30px;
     border: 1px solid #CCCCCC !important;
     border-radius: 4px 4px 4px 4px;
     cursor: pointer;
-    display: inline-block;
+    display: block;
     position: relative;
     text-decoration: none;
     background: image-url('add.png') no-repeat 8px 50% #6AB620;
@@ -297,6 +299,37 @@ table.styled {
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
     strong {
       margin-left: 30px;
+    }
+  }
+  .add-link2 {
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #CCCCCC !important;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    background-color: #6AB620;
+    border: 1px solid #749217 !important;
+    color: #FFFFFF !important;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+    padding: 0 10px;
+  }
+  .box {
+    border: 1px solid #999;
+    .title {
+      line-height: 30px;
+      background-color: #999;
+      color: #fff;
+      padding-left: 20px;
+    }
+    .content {
+      padding: 20px;
+      ul.category_list {
+        li {
+          line-height: 30px;
+        }
+      }
     }
   }
 }

@@ -16,7 +16,17 @@
         %td
           = @company.title
       %tr
-        %td{:width => "20%"}
+        %td
+          分类
+        %td
+          = @company.company_category
+      %tr
+        %td
+          地区
+        %td
+          = @company.company_area
+      %tr
+        %td
           别名
         %td
           = @company.other_title
@@ -40,6 +50,12 @@
           公交信息
         %td
           = @company.bus_info
+      %tr
+        %td
+          标签
+        %td
+          - for tag in @company.tag_list
+            = tag
       %tr
         %td
           介绍

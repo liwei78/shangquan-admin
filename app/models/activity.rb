@@ -1,4 +1,5 @@
 class Activity < ActiveRecord::Base
+  acts_as_taggable
   validates :title, :presence => true
   has_attached_file :poster,
     :styles      => { :original => "600>", :small => "120>" },

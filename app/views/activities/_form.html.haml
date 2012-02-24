@@ -8,6 +8,16 @@
           = f.select :activity_type, SITE_SETTINGS['activity_type']
       %tr
         %td
+          活动分类
+        %td
+          = f.select :activity_category, ActivityCategory.order('position').map{|c| c.name}
+      %tr
+        %td
+          活动地区
+        %td
+          = f.select :activity_area, ActivityArea.order('position').map{|a| a.name}
+      %tr
+        %td
           标题
         %td
           = f.text_field :title, :class => "input medium"
@@ -51,6 +61,13 @@
           网站
         %td
           = f.text_field :website, :class => "input medium"
+      %tr
+        %td
+          标签
+        %td
+          = f.text_field :tag_list, :class => "input medium"
+          %small
+            中文逗号分隔
       %tr
         %td
           详情

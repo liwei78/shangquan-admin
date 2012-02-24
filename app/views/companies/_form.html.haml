@@ -6,6 +6,16 @@
           商家类型
         %td
           = f.select :company_type, SITE_SETTINGS['company_type']
+        %tr
+          %td
+            分类
+          %td
+            = f.select :company_category, CompanyCategory.order('position').map{|c| c.name}
+        %tr
+          %td
+            地区
+          %td
+            = f.select :company_area, CompanyArea.order('position').map{|a| a.name}
       %tr
         %td
           标题
@@ -41,6 +51,13 @@
           网站
         %td
           = f.text_field :website, :class => "input medium"
+      %tr
+        %td
+          标签
+        %td
+          = f.text_field :tag_list, :class => "input medium"
+          %small
+            中文逗号分隔
       %tr
         %td
           介绍

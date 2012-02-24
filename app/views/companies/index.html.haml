@@ -30,5 +30,24 @@
             = will_paginate @companies, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
           
   .siderbox.right
-    = link_to raw("<strong>添加</strong>"), new_company_url, :class => "add-link"
+    .mb
+      = link_to raw("<strong>添加</strong>"), new_company_url, :class => "add-link"
+    .box.mb
+      .title
+        商家分类
+      .content
+        %ul.category_list
+          - for cat in CompanyCategory.order("position")
+            %li
+              = link_to cat.name, edit_company_category_path(cat)
+          %li= link_to "添加分类", new_company_category_path, :class => "add-link2"
+    .box.mb
+      .title
+        商家地区
+      .content
+        %ul.category_list
+          - for area in CompanyArea.order("position")
+            %li
+              = link_to area.name, edit_company_area_path(area)
+          %li= link_to "添加分类", new_company_area_path, :class => "add-link2"
   .clearfix
