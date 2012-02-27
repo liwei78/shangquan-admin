@@ -1,11 +1,24 @@
 settings: &common
-  site_title:     '商圈管理平台'
-  admin_key:      'china'
-  admin_account:  'admin'
-  admin_password: 'changchun'
-  article_type:   [['文章', 0], ['照片', 1], ['视频', 2]]
-  company_type:   [['其他', 0], ['百货商场', 1], ['专卖店', 2], ['美食', 3], ['电子商务', 4]]
-  activity_type:   [['其他', 0], ['商场活动', 1], ['品牌活动', 2], ['美食活动', 3], ['电商活动', 4]]
+  site_title:      '时尚商圈'
+  admin_key:       'china'
+  admin_account:   'admin'
+  admin_password:  'changchun'
+  company_type:    ['其他', '百货商场', '专卖店', '美食', '电子商务']
+  activity_type:   ['其他', '商场活动', '品牌活动', '美食活动', '电商活动']
+  
+  crop_original:   "160>"
+  crop_small:      "120x120#"
+  crop_small_covert: "-gravity north -thumbnail 120x120^ -extent 120x120"
+  
+  good_original:   "320>"
+  good_thumb:      "180x270#"
+  good_small:      "80x80#"
+  good_thumb_covert: "-gravity north -thumbnail 180x270^ -extent 180x270"
+  
+  avatar_original: "160x160#"
+  avatar_thumb:    "80x80#"
+  avatar_small:    "40x40#"
+  avatar_thumb_covert: "-gravity north -thumbnail 80x80^ -extent 80x80"
   
 development:
   paperclip_url:  "http://localhost:4000/upload_files/:class/:attachment/:id/:style/:filename"

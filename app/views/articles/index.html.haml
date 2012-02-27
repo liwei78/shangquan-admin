@@ -1,24 +1,32 @@
 .banner
   .layout
     .title
-      时尚信息管理
+      列表
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
 .layout
   .h20
-  %table.styled
-    %thead
-      %tr
-        %th
-          标题
-        %th
-          管理
-    %tbody
-      - for article in @articles
+  .widebox.left
+    %table.styled
+      %thead
         %tr
-          %td
-            = link_to article.title, article_url(article)
-          %td
-            = link_to "编辑", edit_article_url(article)
-    %tfoot
-      %tr
-        %td{:colspan => 2}
-          = will_paginate @articles, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+          %th
+            标题
+          %th
+            管理
+      %tbody
+        - for article in @articles
+          %tr
+            %td
+              = link_to article.title, article_url(article)
+            %td
+              = link_to "编辑", edit_article_url(article)
+      %tfoot
+        %tr
+          %td{:colspan => 2}
+            = will_paginate @articles, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+  .siderbox.right
+    = link_to raw("<strong>添加</strong>"), new_article_url, :class => "add-link"
+  .clearfix

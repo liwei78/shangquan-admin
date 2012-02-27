@@ -11,7 +11,11 @@ Admin::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   
   resources :users
-  resources :articles
+  resources :articles do
+    member do
+      post 'del_pic'
+    end
+  end
   resources :companies
   resources :activities
   resources :brands

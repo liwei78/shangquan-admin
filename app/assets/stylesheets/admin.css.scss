@@ -66,6 +66,10 @@ ul, ol {
 .h20 {
   height: 20px;
 }
+.grey {
+  color: grey;
+}
+
 
 .header {
   background-color: $secondary_color;
@@ -334,7 +338,22 @@ table.styled {
   }
 }
 
-
+ul.img_list {
+  li {
+    width: 120px;
+    height: 120px;
+    float: left;
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    .del {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 999;
+    }
+  }
+}
 
 
 

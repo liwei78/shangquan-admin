@@ -1,44 +1,55 @@
 .banner
   .layout
     .title
-      查看活动
-- unless flash[:notice].nil?
-  .noticediv
-    .layout
-      = flash[:notice]
-
+      查看
 .layout
+  .h20
   %table.styled
+    %thead
+      %tr
+        %th
+          
+        %th
+          
     %tbody
       %tr
-        %td{:width => "20%"}
+        %td{:width => "10%"}
           标题
         %td
-          = @brand.title
+          = @article.title
       %tr
         %td
-          国家
+          封面
         %td
-          = ['其他', '欧美', '中国', '日本', '韩国'][@brand.nation]
+          = image_tag @article.poster.url
+      - if @article.photos.present?
+        %tr
+          %td
+            图片
+          %td
+            - for photo in @article.photos
+              = image_tag(photo.file.url(:small))
+      - if @article.code.present?
+        %tr
+          %td
+            视频
+          %td
+            = flashplayer(@article.code)
       %tr
         %td
-          字母
+          标签
         %td
-          = @brand.letter
+          - for tag in @article.tag_list
+            = tag
       %tr
         %td
-          分类
+          内容
         %td
-          = ['其他', '服装', '化妆品'][@brand.category_id]
-      %tr
-        %td
-          海报
-        %td
-          = image_tag(@brand.poster.url)
+          = @article.content.html_safe
     %tfoot
       %tr
-        %td{:colspan => 2}
+        %td{:colspan => 3}
           .right
-            = link_to "删除", brand_url(@brand), :title => "删除", :method => "delete", :confirm => "点击确定继续"
-          = link_to "编辑", edit_brand_url(@brand)
+            = link_to "删除", brand_url(@article), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_brand_url(@article)
           

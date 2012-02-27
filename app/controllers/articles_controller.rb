@@ -30,8 +30,12 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+        files = params[:photos].present? ? params[:photos][:file] : []
+        files.each do |file|
+          Photo.create(:file => file, :klass_type => "Article", :klass_id => @article.id) if file.present?
+        end
         flash[:notice] = '添加成功'
-        format.html { redirect_to(articles_url) }
+        format.html { redirect_to @article }
       else
         format.html { render :action => "new" }
       end
@@ -43,8 +47,12 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
+        files = params[:photos].present? ? params[:photos][:file] : []
+        files.each do |file|
+          Photo.create(:file => file, :klass_type => "Article", :klass_id => @article.id) if file.present?
+        end
         flash[:notice] = '编辑成功'
-        format.html { redirect_to(articles_url) }
+        format.html { redirect_to @article }
       else
         format.html { render :action => "edit" }
       end
@@ -60,7 +68,12 @@ class ArticlesController < ApplicationController
     end
   end
   
-  
+  def del_pic
+    article = Article.find(params[:id])
+    photo = article.photos.find(params[:pid])
+    photo.destroy
+    redirect_to :back
+  end
   
   private
   

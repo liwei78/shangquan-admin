@@ -1,4 +1,10 @@
-= form_for(article, :url => (article.new_record? ? articles_url : article_url(article))) do |f|
+- content_for :header do
+  :javascript
+    function add_upload_file() {
+      $('#upload_div').clone().insertBefore('.addmore');
+    }
+
+= form_for(article) do |f|
   %table.styled
     %tbody
       %tr
@@ -6,11 +12,55 @@
           标题
         %td
           = f.text_field :title, :class => "input fullwidth"
+      - if article.poster.present?
+        %tr
+          %td
+            封面预览
+          %td
+            = image_tag article.poster.url
       %tr
         %td
-          类型
+          封面
         %td
-          = f.select :article_type, SITE_SETTINGS['article_type']
+          = f.file_field :poster
+      %tr
+        %td
+          图片预览
+        %td
+          %ul.img_list
+            - for photo in article.photos
+              %li
+                .del
+                  = link_to image_tag("del.png"), del_pic_article_path(article, :pid => photo.id), :method => :post, :confirm => "确定删除吗？"
+                = image_tag(photo.file.url(:small))
+            .clearfix
+      %tr#upload_div
+        %td
+          图片
+        %td
+          = file_field_tag "photos[file][]"
+      %tr.addmore
+        %td
+
+        %td
+          = link_to("增加上传", js_void, :onclick => "add_upload_file();")
+      %tr
+        %td
+          视频代码
+        %td
+          = f.text_field :code, :class => "input fullwidth"
+      %tr
+        %td
+          
+        %td.grey
+          支持优酷/土豆/酷6/六间房/56网/音悦台/搜狐/奇艺的swf格式的视频代码,如 http://www.youku.com/sample.swf
+      %tr
+        %td
+          标签
+        %td.grey
+          = f.text_field :tag_list, :class => "input medium"
+          %small
+            中文逗号分隔
       %tr
         %td
           内容

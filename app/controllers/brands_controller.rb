@@ -1,69 +1,74 @@
+#encoding: utf-8
 class BrandsController < ApplicationController
   before_filter :set_admin_nav_flag
   before_filter :need_admin_login
-
+  
   def index
-    @brands = Brand.paginate(:page => params[:page], :per_page => 10, :order => "id desc")
+    @articles = Article.type_3.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    respond_to do |format|
+      format.html
+    end
+  end
+  
+  def show
+    @article = Article.find(params[:id])
+  end
 
+  def new
+    @article = Article.new(:article_type => "brand")
     respond_to do |format|
       format.html
     end
   end
 
-  def show
-    @brand = Brand.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
-  end
-
-  def new
-    @brand = Brand.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-    end
-  end
-
   def edit
-    @brand = Brand.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   def create
-    @brand = Brand.new(params[:brand])
+    @article = Article.new(params[:article])
 
     respond_to do |format|
-      if @brand.save
-        format.html { redirect_to @brand, notice: 'Brand was successfully created.' }
+      if @article.save
+        flash[:notice] = '添加成功'
+        format.html { redirect_to "/brands/#{@article.id}" }
       else
-        format.html { render action: "new" }
+        format.html { render :action => "new" }
       end
     end
   end
 
   def update
-    @brand = Brand.find(params[:id])
+    @article = Article.find(params[:id])
 
     respond_to do |format|
-      if @brand.update_attributes(params[:brand])
-        format.html { redirect_to @brand, notice: 'Brand was successfully updated.' }
+      if @article.update_attributes(params[:article])
+        flash[:notice] = '编辑成功'
+        format.html { redirect_to "/brands/#{@article.id}" }
       else
-        format.html { render action: "edit" }
+        format.html { render :action => "edit" }
       end
     end
   end
 
   def destroy
-    @brand = Brand.find(params[:id])
-    @brand.destroy
-
+    @article = Article.find(params[:id])
+    @article.destroy
     respond_to do |format|
-      format.html { redirect_to brands_url }
+      flash[:notice] = '删除成功'
+      format.html { redirect_to(brands_url) }
     end
   end
   
+  def del_pic
+    article = Article.find(params[:id])
+    photo = article.photos.find(params[:pid])
+    photo.destroy
+    redirect_to :back
+  end
+  
   private
+  
   def set_admin_nav_flag
     @admin_nav_flag = "brands"
   end

@@ -1,8 +1,9 @@
 .banner
   .layout
     .title
-      查看时尚信息
+      查看
 .layout
+  .h20
   %table.styled
     %thead
       %tr
@@ -16,6 +17,30 @@
           标题
         %td
           = @article.title
+      %tr
+        %td
+          封面
+        %td
+          = image_tag @article.poster.url
+      - if @article.photos.present?
+        %tr
+          %td
+            图片
+          %td
+            - for photo in @article.photos
+              = image_tag(photo.file.url(:small))
+      - if @article.code.present?
+        %tr
+          %td
+            视频
+          %td
+            = flashplayer(@article.code)
+      %tr
+        %td
+          标签
+        %td
+          - for tag in @article.tag_list
+            = tag
       %tr
         %td
           内容
