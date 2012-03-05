@@ -18,6 +18,13 @@
           = f.text_field :name, :class => "input"
       %tr
         %td
+          发布权限
+        %td
+          = f.select :promotion, 0..20
+          %span
+            0表示为黑名单，发布的所有资源均为block,20表示为白名单，发布的资源均不需要审核。
+      %tr
+        %td
           
         %td
           - unless user.new_record?

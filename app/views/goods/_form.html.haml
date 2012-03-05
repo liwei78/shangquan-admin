@@ -14,11 +14,6 @@
           元
       %tr
         %td
-          品牌
-        %td
-          = f.select :brand_id, Brand.list_for_select
-      %tr
-        %td
           喜欢
         %td
           = f.text_field :likes_count, :class => "input small"
@@ -37,6 +32,14 @@
             = image_tag(good.poster.url(:thumb))
             %br
           = f.file_field :poster
+      %tr
+        %td
+          资源类型
+        %td
+          = f.select :resource_type, [0, 1, 2, 3]
+          %span
+            0：屏蔽，1：审核，2：白名单，3：删除状态
+
       %tr
         %td
           

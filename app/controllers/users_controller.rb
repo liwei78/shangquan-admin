@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         flash[:notice] = '添加成功'
-        format.html { redirect_to(users_url) }
+        format.html { redirect_to(@user) }
       else
         format.html { render :action => "new" }
       end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = '编辑成功'
-        format.html { redirect_to(users_url) }
+        format.html { redirect_to(@user) }
       else
         format.html { render :action => "edit" }
       end

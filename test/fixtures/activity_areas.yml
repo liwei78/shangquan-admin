@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
+  name: Area1
   position: 1
 
 two:
-  name: MyString
-  position: 1
+  name: Area2
+  position: 2

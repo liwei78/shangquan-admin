@@ -65,6 +65,14 @@
           = f.cktext_area("content", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Basic')
       %tr
         %td
+          资源类型
+        %td
+          = f.select :resource_type, [0, 1, 2, 3]
+          %span
+            0：屏蔽，1：审核，2：白名单，3：删除状态
+
+      %tr
+        %td
           
         %td
           - unless company.new_record?
