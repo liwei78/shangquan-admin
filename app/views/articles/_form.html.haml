@@ -9,6 +9,11 @@
     %tbody
       %tr
         %td
+          文章类型
+        %td
+          = f.check_box :is_article
+      %tr
+        %td
           标题
         %td
           = f.text_field :title, :class => "input fullwidth"
@@ -25,15 +30,21 @@
           = f.file_field :poster
       %tr
         %td
-          图片预览
+          图集类型
         %td
-          %ul.img_list
-            - for photo in article.photos
-              %li
-                .del
-                  = link_to image_tag("del.png"), del_pic_article_path(article, :pid => photo.id), :method => :post, :confirm => "确定删除吗？"
-                = image_tag(photo.file.url(:small))
-            .clearfix
+          = f.check_box :is_photo
+      - if article.photos.present?
+        %tr
+          %td
+            图片预览
+          %td
+            %ul.img_list
+              - for photo in article.photos
+                %li
+                  .del
+                    = link_to image_tag("del.png"), del_pic_article_path(article, :pid => photo.id), :method => :post, :confirm => "确定删除吗？"
+                  = image_tag(photo.file.url(:small))
+              .clearfix
       %tr#upload_div
         %td
           图片
@@ -44,6 +55,12 @@
 
         %td
           = link_to("增加上传", js_void, :onclick => "add_upload_file();")
+      
+      %tr
+        %td
+          视频类型
+        %td
+          = f.check_box :is_video
       %tr
         %td
           视频代码
@@ -54,6 +71,89 @@
           
         %td.grey
           支持优酷/土豆/酷6/六间房/56网/音悦台/搜狐/奇艺的swf格式的视频代码,如 http://www.youku.com/sample.swf
+      
+      
+      %tr
+        %td
+          活动类型
+        %td
+          = f.check_box :is_activity
+      %tr
+        %td
+          商家类型
+        %td
+          = f.check_box :is_company
+      %tr
+        %td
+          活动时间
+        %td
+          = f.text_field :schedule, :class => "input medium"
+      %tr
+        %td
+          折扣
+        %td
+          = f.text_field :discount, :class => "input medium"
+      %tr
+        %td
+          活动商场
+        %td
+          = f.text_field :place, :class => "input medium"
+      %tr
+        %td
+          地址
+        %td
+          = f.text_field :address, :class => "input medium"
+      %tr
+        %td
+          电话
+        %td
+          = f.text_field :telphone, :class => "input medium"
+      %tr
+        %td
+          营业时间
+        %td
+          = f.text_field :office_time, :class => "input medium"
+      %tr
+        %td
+          公交信息
+        %td
+          = f.text_field :bus_info, :class => "input medium"
+      %tr
+        %td
+          网站
+        %td
+          = f.text_field :website, :class => "input medium"
+      
+      %tr
+        %td
+          品牌类型
+        %td
+          = f.check_box :is_brand
+      %tr
+        %td
+          品牌名称
+        %td
+          = f.text_field :brand_name, :class => "input"
+          元
+      %tr
+        %td
+          品牌描述
+        %td
+          = f.text_field :brand_desc, :class => "input"
+          元
+      
+      %tr
+        %td
+          商品类型
+        %td
+          = f.check_box :is_good
+      %tr
+        %td
+          价格
+        %td
+          = f.text_field :price, :class => "input small"
+          元
+      
       %tr
         %td
           标签
@@ -61,6 +161,28 @@
           = f.text_field :tag_list, :class => "input medium"
           %small
             中文逗号分隔
+
+      %tr
+        %td
+          喜欢次数
+        %td
+          = f.text_field :likes_count, :class => "input small"
+      %tr
+        %td
+          分享次数
+        %td
+          = f.text_field :shares_count, :class => "input small"
+      %tr
+        %td
+          收藏次数
+        %td
+          = f.text_field :collections_count, :class => "input small"
+      %tr
+        %td
+          评论数
+        %td
+          = f.text_field :comments_count, :class => "input small"
+
       %tr
         %td
           内容
@@ -68,11 +190,15 @@
           = f.cktext_area("content", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Basic')
       %tr
         %td
-          资源类型
+          资源状态
         %td
-          = f.select :resource_type, [0, 1, 2, 3]
-          %span
-            0：屏蔽，1：审核，2：白名单，3：删除状态
+          = f.select :state, [["屏蔽", 0], ["审核中", 1], ["白名单", 2], ["删除状态", 3]]
+      %tr
+        %td
+          资源来源
+        %td
+          = f.select :source_type, [["用户添加", 0], ["管理员添加", 1], ["用户添加后审核通过", 2]]
+
       %tr
         %td
           

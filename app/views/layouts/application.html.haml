@@ -21,22 +21,22 @@
               = link_to "管理首页", root_url, :class => admin_nav?("index")
             %li
               = link_to "用户管理", users_url, :class => admin_nav?("users")
-            %li
-              = link_to "商家管理", companies_url, :class => admin_nav?("companies")
+            / %li
+            /   = link_to "商家管理", companies_url, :class => admin_nav?("companies")
             %li
               = link_to "文章管理", articles_url, :class => admin_nav?("articles")
-            %li
-              = link_to "活动管理", activities_url, :class => admin_nav?("activities")
-            %li
-              = link_to "商品管理", goods_url, :class => admin_nav?("goods")
-            %li
-              = link_to "品牌管理", brands_url, :class => admin_nav?("brands")
-            %li
-              = link_to "评论管理", "", :class => admin_nav?("")
-            %li
-              = link_to "视频管理", "", :class => admin_nav?("")
-            %li
-              = link_to "动态管理", "", :class => admin_nav?("")
+            / %li
+            /   = link_to "活动管理", activities_url, :class => admin_nav?("activities")
+            / %li
+            /   = link_to "商品管理", goods_url, :class => admin_nav?("goods")
+            / %li
+            /   = link_to "品牌管理", brands_url, :class => admin_nav?("brands")
+            / %li
+            /   = link_to "评论管理", "", :class => admin_nav?("")
+            / %li
+            /   = link_to "视频管理", "", :class => admin_nav?("")
+            / %li
+            /   = link_to "动态管理", "", :class => admin_nav?("")
             .clearfix
     .mainbox
       = yield

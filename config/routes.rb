@@ -1,5 +1,9 @@
 Admin::Application.routes.draw do
 
+  resources :areas
+
+  resources :categories
+
   resources :company_areas
 
   resources :activity_areas

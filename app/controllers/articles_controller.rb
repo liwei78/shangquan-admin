@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @article.source_type = 1
     respond_to do |format|
       format.html
     end

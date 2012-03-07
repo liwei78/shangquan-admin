@@ -20,6 +20,16 @@
           显示名称
         %td
           = @user.name
+      %tr
+        %td
+          网站角色
+        %td
+          = @user.site_role
+      %tr
+        %td
+          发布权限
+        %td
+          = @user.promotion
     %tfoot
       %tr
         %td{:colspan => 2}

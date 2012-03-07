@@ -1,5 +1,6 @@
+# encoding: utf-8
 class User < ActiveRecord::Base
-  attr_accessor  :password, :signcode
+  attr_accessor  :password
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
@@ -31,6 +32,29 @@ class User < ActiveRecord::Base
   
   has_many :articles, :order => "articles.id desc"
   has_many :feeds,    :order => "feeds.id desc"
+  has_many :likes
+  has_many :goods, :order => "goods.id desc"
+  has_many :activities, :order => "activities.id desc"
+  has_many :photos, :as => :klass
+  has_many :comments, :order => "comments.id desc"
+  
+  has_attached_file :avatar,
+    :styles      => { :original => SITE_SETTINGS["avatar_original"], :thumb => SITE_SETTINGS["avatar_thumb"], :small => SITE_SETTINGS["avatar_small"] },
+    :convert_options => { :thumb => SITE_SETTINGS["avatar_thumb_covert"] },
+    :url         => SITE_SETTINGS["paperclip_url"],
+    :path        => SITE_SETTINGS["paperclip_path"],
+    :default_url => "avatar.jpg"
+
+  scope :normal, :conditions => ["users.promotion = ?", 1]
+  scope :white,  :conditions => ["users.promotion = ?", 2]
+  scope :black,  :conditions => ["users.promotion = ?", 0]
+  
+  def resource_type
+    rtype = 1 if self.promotion >0&&self.promotion<20  # 0 < promotion < 20
+    rtype = 2 if self.promotion = 20                   # in white list
+    rtype = 0 if self.promotion = 0                    # in black list
+    rtype
+  end
   
   def self.authenticate(email, password)
     user = find_by_email(email)
@@ -42,12 +66,16 @@ class User < ActiveRecord::Base
     encrypted_password == encrypt(password)
   end
   
+  def site_role
+    ["普通用户", "时尚设计师", "商家"][self.role]
+  end
+  
   private
   
   def encrypt_something
     self.salt               = make_salt if new_record?
-    self.signcode           = encrypt(Time.now.to_s + rand(9999).to_s)
-    self.verifycode         = encrypt(Time.now.to_s + rand(8888).to_s)
+    self.signcode           = encrypt(self.salt + rand(9999).to_s)
+    self.verifycode         = encrypt(self.salt + rand(8888).to_s)
     self.encrypted_password = encrypt(password)
   end
   

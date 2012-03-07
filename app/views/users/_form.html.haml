@@ -25,6 +25,11 @@
             0表示为黑名单，发布的所有资源均为block,20表示为白名单，发布的资源均不需要审核。
       %tr
         %td
+          网站角色
+        %td
+          = f.select :role, [["普通用户", 0], ["设计师", 1], ["商家", 2]]
+      %tr
+        %td
           
         %td
           - unless user.new_record?

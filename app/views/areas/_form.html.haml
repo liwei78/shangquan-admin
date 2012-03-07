@@ -1,0 +1,27 @@
+= form_for(area) do |f|
+  %table.styled
+    %tbody
+      %tr
+        %td
+          名称
+        %td
+          = f.text_field :name, :class => "input medium"
+      %tr
+        %td
+          排列
+        %td
+          = f.text_field :position, :class => "input small"
+          %small
+            数字小的在前
+      %tr
+        %td
+          
+        %td
+          - unless area.new_record?
+            .right
+              = link_to "删除", area_url(area), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = submit_tag("确定", :class => "submit")
+          = link_to "返回", :back
+            
+          
+            
