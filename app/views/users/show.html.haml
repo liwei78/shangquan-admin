@@ -25,6 +25,8 @@
           网站角色
         %td
           = @user.site_role
+          %span.grey
+            = @user.site_upgrade_state
       %tr
         %td
           发布权限

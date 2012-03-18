@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "goods/show" do
+describe "items/show" do
   before(:each) do
-    @good = assign(:good, stub_model(Good))
+    @item = assign(:item, stub_model(Item))
   end
 
   it "renders attributes in <p>" do

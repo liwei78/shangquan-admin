@@ -1,12 +1,12 @@
 .banner
   .layout
     .title
-      编辑
+      添加
 - unless flash[:notice].nil?
   .noticediv
     .layout
       = flash[:notice]
 
 .layout
-  = render :partial => "form", :locals => {:good => @good}
+  = render :partial => "form", :locals => {:item => @item}
             

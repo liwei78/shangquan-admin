@@ -14,7 +14,9 @@ Admin::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
   
-  resources :users
+  resources :users do
+    
+  end
   resources :articles do
     member do
       post 'del_pic'
@@ -23,7 +25,7 @@ Admin::Application.routes.draw do
   resources :companies
   resources :activities
   resources :brands
-  resources :goods
+  resources :items
   
   match 'login'      => 'dashboard#login',      :as => :login,       :via => :get
   match 'checklogin' => 'dashboard#checklogin', :as => :checklogin,  :via => :post

@@ -4,26 +4,28 @@ class ArticlesController < ApplicationController
   before_filter :need_admin_login
   
   def index
-    if params[:is_article]
-      @admin_nav_flag = "articles"
-      @articles = Article.is_article.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
-    end
-    if params[:is_company]
-      @admin_nav_flag = "companies"
-      @articles = Article.is_company.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
-    end
-    if params[:is_activity]
-      @admin_nav_flag = "activities"
-      @articles = Article.is_activity.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
-    end
-    if params[:is_good]
-      @admin_nav_flag = "goods"
-      @articles = Article.is_good.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
-    end
-    if params[:is_brand]
-      @admin_nav_flag = "brands"
-      @articles = Article.is_brand.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
-    end
+    # if params[:is_article]
+    #   @admin_nav_flag = "articles"
+    #   @articles = Article.is_article.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    # end
+    # if params[:is_company]
+    #   @admin_nav_flag = "companies"
+    #   @articles = Article.is_company.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    # end
+    # if params[:is_activity]
+    #   @admin_nav_flag = "activities"
+    #   @articles = Article.is_activity.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    # end
+    # if params[:is_item]
+    #   @admin_nav_flag = "items"
+    #   @articles = Article.is_item.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    # end
+    # if params[:is_brand]
+    #   @admin_nav_flag = "brands"
+    #   @articles = Article.is_brand.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    # end
+    @admin_nav_flag = "articles"
+    @articles = Article.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
     respond_to do |format|
       format.html
     end

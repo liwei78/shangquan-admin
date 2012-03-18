@@ -43,6 +43,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        Message.upgrade_state_msg(@user)
         flash[:notice] = '编辑成功'
         format.html { redirect_to(@user) }
       else

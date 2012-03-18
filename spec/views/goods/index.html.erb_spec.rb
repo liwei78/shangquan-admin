@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe "goods/index" do
+describe "items/index" do
   before(:each) do
-    assign(:goods, [
-      stub_model(Good),
-      stub_model(Good)
+    assign(:items, [
+      stub_model(Item),
+      stub_model(Item)
     ])
   end
 
-  it "renders a list of goods" do
+  it "renders a list of items" do
     render
   end
 end

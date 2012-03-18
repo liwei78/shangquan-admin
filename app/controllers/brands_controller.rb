@@ -4,34 +4,38 @@ class BrandsController < ApplicationController
   before_filter :need_admin_login
   
   def index
-    @articles = Article.type_3.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    @brands = Brand.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
     respond_to do |format|
       format.html
     end
   end
   
   def show
-    @article = Article.find(params[:id])
+    @brand = Brand.find(params[:id])
   end
 
   def new
-    @article = Article.new(:article_type => "brand")
+    @brand = Brand.new(:brand_type => "brand")
     respond_to do |format|
       format.html
     end
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @brand = Brand.find(params[:id])
   end
 
   def create
-    @article = Article.new(params[:article])
+    @brand = Brand.new(params[:brand])
 
     respond_to do |format|
-      if @article.save
+      if @brand.save
+        unless params[:user_id].blank?
+          users = User.find(params[:user_id])
+          @brand.users = users
+        end
         flash[:notice] = '添加成功'
-        format.html { redirect_to "/brands/#{@article.id}" }
+        format.html { redirect_to @brand }
       else
         format.html { render :action => "new" }
       end
@@ -39,12 +43,16 @@ class BrandsController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
+    @brand = Brand.find(params[:id])
 
     respond_to do |format|
-      if @article.update_attributes(params[:article])
+      if @brand.update_attributes(params[:brand])
+        unless params[:user_id].blank?
+          users = User.find(params[:user_id])
+          @brand.users = users
+        end
         flash[:notice] = '编辑成功'
-        format.html { redirect_to "/brands/#{@article.id}" }
+        format.html { redirect_to @brand }
       else
         format.html { render :action => "edit" }
       end
@@ -52,8 +60,8 @@ class BrandsController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
-    @article.destroy
+    @brand = Brand.find(params[:id])
+    @brand.destroy
     respond_to do |format|
       flash[:notice] = '删除成功'
       format.html { redirect_to(brands_url) }
@@ -61,8 +69,8 @@ class BrandsController < ApplicationController
   end
   
   def del_pic
-    article = Article.find(params[:id])
-    photo = article.photos.find(params[:pid])
+    brand = Brand.find(params[:id])
+    photo = brand.photos.find(params[:pid])
     photo.destroy
     redirect_to :back
   end

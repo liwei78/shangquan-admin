@@ -16,40 +16,27 @@
         %td{:width => "10%"}
           标题
         %td
-          = @article.title
+          = @brand.name
+          - if @brand.tmp?
+            %span.grey
+              临时
+          
       %tr
         %td
-          封面
+          Logo
         %td
-          = image_tag @article.poster.url
-      - if @article.photos.present?
-        %tr
-          %td
-            图片
-          %td
-            - for photo in @article.photos
-              = image_tag(photo.file.url(:small))
-      - if @article.code.present?
-        %tr
-          %td
-            视频
-          %td
-            = flashplayer(@article.code)
+          = image_tag @brand.logo.url
       %tr
         %td
-          标签
+          用户
         %td
-          - for tag in @article.tag_list
-            = tag
-      %tr
-        %td
-          内容
-        %td
-          = @article.content.html_safe
+          %ul
+            - for user in @brand.users
+              %li= user.name
     %tfoot
       %tr
-        %td{:colspan => 3}
+        %td{:colspan => 2}
           .right
-            = link_to "删除", brand_url(@article), :title => "删除", :method => "delete", :confirm => "点击确定继续"
-          = link_to "编辑", edit_brand_url(@article)
+            = link_to "删除", brand_url(@brand), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_brand_url(@brand)
           

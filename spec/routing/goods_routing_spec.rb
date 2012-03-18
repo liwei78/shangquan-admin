@@ -1,34 +1,34 @@
 require "spec_helper"
 
-describe GoodsController do
+describe ItemsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/goods").should route_to("goods#index")
+      get("/items").should route_to("items#index")
     end
 
     it "routes to #new" do
-      get("/goods/new").should route_to("goods#new")
+      get("/items/new").should route_to("items#new")
     end
 
     it "routes to #show" do
-      get("/goods/1").should route_to("goods#show", :id => "1")
+      get("/items/1").should route_to("items#show", :id => "1")
     end
 
     it "routes to #edit" do
-      get("/goods/1/edit").should route_to("goods#edit", :id => "1")
+      get("/items/1/edit").should route_to("items#edit", :id => "1")
     end
 
     it "routes to #create" do
-      post("/goods").should route_to("goods#create")
+      post("/items").should route_to("items#create")
     end
 
     it "routes to #update" do
-      put("/goods/1").should route_to("goods#update", :id => "1")
+      put("/items/1").should route_to("items#update", :id => "1")
     end
 
     it "routes to #destroy" do
-      delete("/goods/1").should route_to("goods#destroy", :id => "1")
+      delete("/items/1").should route_to("items#destroy", :id => "1")
     end
 
   end

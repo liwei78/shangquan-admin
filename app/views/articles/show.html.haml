@@ -29,12 +29,12 @@
           %td
             - for photo in @article.photos
               = image_tag(photo.file.url(:small))
-      - if @article.code.present?
+      - if @article.video_code.present?
         %tr
           %td
             视频
           %td
-            = flashplayer(@article.code)
+            = flashplayer(@article.video_code)
       %tr
         %td
           标签

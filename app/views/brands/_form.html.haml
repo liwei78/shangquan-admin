@@ -1,50 +1,46 @@
-= form_for(article, :url => brands_path, :method => (article.new_record? ? :post : :update )) do |f|
-  = f.hidden_field :article_type
+= form_for(brand) do |f|
   %table.styled
     %tbody
       %tr
         %td
-          标题
+          名称
         %td
-          = f.text_field :title, :class => "input fullwidth"
-      - if article.poster.present?
+          = f.text_field :name, :class => "input"
+      - if brand.logo.present?
         %tr
           %td
-            封面预览
+            Logo预览
           %td
-            = image_tag article.poster.url
+            = image_tag brand.logo.url
       %tr
         %td
-          封面
+          Logo
         %td
           = f.file_field :poster
       %tr
         %td
-          标签
-        %td.grey
-          = f.text_field :tag_list, :class => "input medium"
-          %small
-            中文逗号分隔
-      %tr
-        %td
-          内容
-        %td
-          = f.cktext_area("content", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Basic')
-      %tr
-        %td
           资源类型
         %td
-          = f.select :resource_type, [0, 1, 2, 3]
+          = f.select :tmp, [["临时", true], ["正式", false]]
           %span
             0：屏蔽，1：审核，2：白名单，3：删除状态
+      %tr
+        %td
+          关联用户
+        %td
+          %ul
+            - for user in User.all
+              %li
+                = check_box_tag "user_id[]", user.id, brand.users.include?(user)
+                = user.name
 
       %tr
         %td
           
         %td
-          - unless article.new_record?
+          - unless brand.new_record?
             .right
-              = link_to "删除", article_url(article), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+              = link_to "删除", brand_url(brand), :title => "删除", :method => "delete", :confirm => "点击确定继续"
           = submit_tag("确定", :class => "submit")
           = link_to "返回", :back
             

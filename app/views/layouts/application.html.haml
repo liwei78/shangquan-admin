@@ -28,9 +28,9 @@
             %li
               = link_to "活动管理", articles_url(:is_activity => true), :class => admin_nav?("activities")
             %li
-              = link_to "商品管理", articles_url(:is_good => true), :class => admin_nav?("goods")
+              = link_to "商品管理", articles_url(:is_item => true), :class => admin_nav?("items")
             %li
-              = link_to "品牌管理", articles_url(:is_brand => true), :class => admin_nav?("brands")
+              = link_to "品牌管理", brands_url, :class => admin_nav?("brands")
             / %li
             /   = link_to "评论管理", "", :class => admin_nav?("")
             / %li

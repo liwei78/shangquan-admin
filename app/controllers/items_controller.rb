@@ -1,9 +1,9 @@
-class GoodsController < ApplicationController
+class ItemsController < ApplicationController
   before_filter :set_admin_nav_flag
   before_filter :need_admin_login
 
   def index
-    @goods = Good.paginate(:page => params[:page], :per_page => 10, :order => "id desc")
+    @items = Item.paginate(:page => params[:page], :per_page => 10, :order => "id desc")
 
     respond_to do |format|
       format.html
@@ -11,7 +11,7 @@ class GoodsController < ApplicationController
   end
 
   def show
-    @good = Good.find(params[:id])
+    @item = Item.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,7 +19,7 @@ class GoodsController < ApplicationController
   end
 
   def new
-    @good = Good.new
+    @item = Item.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -27,15 +27,15 @@ class GoodsController < ApplicationController
   end
 
   def edit
-    @good = Good.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def create
-    @good = Good.new(params[:good])
+    @item = Item.new(params[:item])
 
     respond_to do |format|
-      if @good.save
-        format.html { redirect_to @good, notice: 'Good was successfully created.' }
+      if @item.save
+        format.html { redirect_to @item, notice: 'Item was successfully created.' }
       else
         format.html { render action: "new" }
       end
@@ -43,11 +43,11 @@ class GoodsController < ApplicationController
   end
 
   def update
-    @good = Good.find(params[:id])
+    @item = Item.find(params[:id])
 
     respond_to do |format|
-      if @good.update_attributes(params[:good])
-        format.html { redirect_to @good, notice: 'Good was successfully updated.' }
+      if @item.update_attributes(params[:item])
+        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
       else
         format.html { render action: "edit" }
       end
@@ -55,16 +55,16 @@ class GoodsController < ApplicationController
   end
 
   def destroy
-    @good = Good.find(params[:id])
-    @good.destroy
+    @item = Item.find(params[:id])
+    @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to goods_url }
+      format.html { redirect_to items_url }
     end
   end
   
   private
   def set_admin_nav_flag
-    @admin_nav_flag = "goods"
+    @admin_nav_flag = "items"
   end
 end

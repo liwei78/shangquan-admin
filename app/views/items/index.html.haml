@@ -18,17 +18,17 @@
           %th
             管理
       %tbody
-        - for good in @goods
+        - for item in @items
           %tr
             %td
-              = link_to good.title, good_url(good)
+              = link_to item.title, item_url(item)
             %td
-              = link_to "编辑", edit_good_url(good)
+              = link_to "编辑", edit_item_url(item)
       %tfoot
         %tr
           %td{:colspan => 2}
-            = will_paginate @goods, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+            = will_paginate @items, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
           
   .siderbox.right
-    = link_to raw("<strong>添加</strong>"), new_good_url, :class => "add-link"
+    = link_to raw("<strong>添加</strong>"), new_item_url, :class => "add-link"
   .clearfix
