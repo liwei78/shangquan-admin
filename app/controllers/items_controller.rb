@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class ItemsController < ApplicationController
   before_filter :set_admin_nav_flag
   before_filter :need_admin_login

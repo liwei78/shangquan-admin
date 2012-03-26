@@ -1,0 +1,42 @@
+.banner
+  .layout
+    .title
+      列表
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  .h20
+  .widebox.left
+    %table.styled
+      %thead
+        %tr
+          %th
+            排序
+          %th
+            名称
+          %th
+            类别
+          %th
+            管理
+      %tbody
+        - for banner in @banners
+          %tr
+            %td
+              = banner.position
+            %td
+              = link_to banner.title, banner_url(banner)
+            %td
+              = ["首页滚动", "首页滚动侧边栏"][banner.category]
+            %td
+              = link_to "编辑", edit_banner_url(banner)
+      %tfoot
+        %tr
+          %td{:colspan => 4}
+            = will_paginate @banners, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+          
+  .siderbox.right
+    = link_to raw("<strong>添加</strong>"), new_banner_url, :class => "add-link"
+  .clearfix

@@ -1,5 +1,7 @@
 Admin::Application.routes.draw do
 
+  resources :banners
+
   resources :areas
 
   resources :categories

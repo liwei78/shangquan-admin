@@ -1,0 +1,48 @@
+= form_for(banner) do |f|
+  %table.styled
+    %tbody
+      %tr
+        %td
+          标题
+        %td
+          = f.text_field :title, :class => "input medium"
+      %tr
+        %td
+          摘要
+        %td
+          = f.text_field :summary, :class => "input medium"
+      %tr
+        %td
+          访问网址
+        %td
+          = f.text_field :gourl, :class => "input medium"
+      %tr
+        %td
+          排序
+        %td
+          = f.text_field :position, :class => "input"
+      %tr
+        %td
+          类别
+        %td
+          = f.select :category, [['首页滚动', 0], ['首页滚动侧边栏', 1]]
+      %tr
+        %td
+          海报
+        %td
+          - unless banner.new_record?
+            = image_tag(banner.poster.url, :width => 400)
+            %br
+          = f.file_field :poster
+      %tr
+        %td
+          
+        %td
+          - unless banner.new_record?
+            .right
+              = link_to "删除", banner_url(banner), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = submit_tag("确定", :class => "submit")
+          = link_to "返回", :back
+            
+          
+            

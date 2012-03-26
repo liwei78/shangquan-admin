@@ -1,0 +1,49 @@
+.banner
+  .layout
+    .title
+      查看活动
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  %table.styled
+    %tbody
+      %tr
+        %td{:width => "20%"}
+          标题
+        %td
+          = @banner.title
+      %tr
+        %td
+          摘要
+        %td
+          = @banner.summary.html_safe
+      %tr
+        %td
+          访问网址
+        %td
+          = link_to @banner.gourl, @banner.gourl, :target => "_blank"
+      %tr
+        %td
+          排序
+        %td
+          = @banner.position
+      %tr
+        %td
+          类别
+        %td
+          = ["首页滚动", "首页滚动侧边栏"][@banner.category]
+      %tr
+        %td
+          海报
+        %td
+          = image_tag(@banner.poster.url, :width => 400)
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", banner_url(@banner), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_banner_url(@banner)
+          
