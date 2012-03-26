@@ -17,27 +17,61 @@
           = @item.title
       %tr
         %td
+          货号
+        %td
+          = @item.unique_id
+      %tr
+        %td
           价格
         %td
           = @item.price
           元
+      - if @item.brand.present?
+        %tr
+          %td
+            品牌
+          %td
+            = image_tag(@item.brand.logo)
       %tr
-        %td
-          品牌
-        %td
-          = @item.brand.title if @item.brand_id.present?
-      %tr
-        %td
-          
         %td
           喜欢
+        %td
           = @item.likes_count
-          次
+      %tr
+        %td
+          评论
+        %td
+          = @item.comments_count
+      %tr
+        %td
+          收藏
+        %td
+          = @item.collects_count
       %tr
         %td
           海报
         %td
           = image_tag(@item.poster.url)
+      %tr
+        %td
+          资源类型
+        %td
+          = ["屏蔽", "审核中", "白名单", "删除状态"][@item.state]
+      %tr
+        %td
+          销售状态
+        %td
+          = @item.store? ? "是" : "否"
+      %tr
+        %td
+          首页推荐
+        %td
+          = @item.suggest? ? "是" : "否"
+      %tr
+        %td
+          推荐描述
+        %td
+          = @item.summary.html_safe
     %tfoot
       %tr
         %td{:colspan => 2}

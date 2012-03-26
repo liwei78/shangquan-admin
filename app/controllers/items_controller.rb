@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   before_filter :need_admin_login
 
   def index
-    @items = Item.paginate(:page => params[:page], :per_page => 10, :order => "id desc")
+    @items = Item.paginate(:page => params[:page], :per_page => 30, :order => "id desc")
 
     respond_to do |format|
       format.html

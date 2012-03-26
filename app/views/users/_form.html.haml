@@ -35,6 +35,26 @@
           = f.select :upgrade_state, [["无", 0], ["申请中", 1], ["申请通过", 2], ["申请拒绝", 3]]
       %tr
         %td
+          认证
+        %td
+          = f.select :star, [["无", 0], ["认证达人", 1], ["认证商家", 2]]
+      %tr
+        %td
+          今日达人
+        %td
+          = f.select :todaystar, [["否", false], ["是", true]]
+      %tr
+        %td
+          首页推荐
+        %td
+          = f.select :suggest, [["否", false], ["是", true]]
+      %tr
+        %td
+          首页推荐语
+        %td
+          = f.text_field :intro, :class => "input"
+      %tr
+        %td
           
         %td
           - unless user.new_record?

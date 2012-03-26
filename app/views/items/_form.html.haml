@@ -8,22 +8,36 @@
           = f.text_field :title, :class => "input medium"
       %tr
         %td
+          货号
+        %td
+          = f.text_field :unique_id, :class => "input medium"
+      %tr
+        %td
           价格
         %td
           = f.text_field :price, :class => "input small"
           元
+      - if item.brand.present?
+        %tr
+          %td
+            品牌
+          %td
+            = image_tag(item.brand.logo)
       %tr
         %td
           喜欢
         %td
           = f.text_field :likes_count, :class => "input small"
-          次
       %tr
         %td
           评论
         %td
           = f.text_field :comments_count, :class => "input small"
-          条
+      %tr
+        %td
+          收藏
+        %td
+          = f.text_field :collects_count, :class => "input small"
       %tr
         %td
           海报
@@ -36,9 +50,22 @@
         %td
           资源类型
         %td
-          = f.select :resource_type, [0, 1, 2, 3]
-          %span
-            0：屏蔽，1：审核，2：白名单，3：删除状态
+          = f.select :state, [["屏蔽", 0], ["审核中", 1], ["白名单", 2], ["删除状态", 3]]
+      %tr
+        %td
+          销售状态
+        %td
+          = f.select :store, [["否", false], ["是", true]]
+      %tr
+        %td
+          首页推荐
+        %td
+          = f.select :suggest, [["否", false], ["是", true]]
+      %tr
+        %td
+          推荐描述
+        %td
+          = f.text_field :summary, :class => "input"
 
       %tr
         %td
@@ -48,7 +75,6 @@
             .right
               = link_to "删除", item_url(item), :title => "删除", :method => "delete", :confirm => "点击确定继续"
           = submit_tag("确定", :class => "submit")
-          = link_to "返回", :back
             
           
             

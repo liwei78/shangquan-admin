@@ -22,13 +22,11 @@
             %li
               = link_to "用户管理", users_url, :class => admin_nav?("users")
             %li
-              = link_to "文章管理", articles_url(:is_article => true), :class => admin_nav?("articles")
+              = link_to "文章管理", articles_url, :class => admin_nav?("articles")
             %li
-              = link_to "商家管理", articles_url(:is_company => true), :class => admin_nav?("companies")
+              = link_to "活动管理", activities_url, :class => admin_nav?("activities")
             %li
-              = link_to "活动管理", articles_url(:is_activity => true), :class => admin_nav?("activities")
-            %li
-              = link_to "商品管理", articles_url(:is_item => true), :class => admin_nav?("items")
+              = link_to "商品管理", items_url, :class => admin_nav?("items")
             %li
               = link_to "品牌管理", brands_url, :class => admin_nav?("brands")
             %li
