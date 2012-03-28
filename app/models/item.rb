@@ -10,7 +10,7 @@ class Item < ActiveRecord::Base
   scope :white,    :conditions => ["items.state = ?", 2]
   scope :deleted,  :conditions => ["items.state = ?", 3]
   scope :in_store,  :conditions => ["items.store = ?", true]
-  
+  scope :is_top,      :conditions => ["items.top = ?", true]
   
   has_attached_file :poster,
     :styles          => {:original => SITE_SETTINGS["item_original"], :small => ""},

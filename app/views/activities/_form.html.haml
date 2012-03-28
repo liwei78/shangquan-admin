@@ -3,91 +3,64 @@
     %tbody
       %tr
         %td
-          活动类型
-        %td
-          = f.select :activity_type, SITE_SETTINGS['activity_type']
-      %tr
-        %td
-          活动分类
-        %td
-          = f.select :activity_category, ActivityCategory.order('position').map{|c| c.name}
-      %tr
-        %td
-          活动地区
-        %td
-          = f.select :activity_area, ActivityArea.order('position').map{|a| a.name}
-      %tr
-        %td
           标题
         %td
           = f.text_field :title, :class => "input medium"
       %tr
         %td
-          活动时间
+          推荐描述
         %td
-          = f.text_field :schedule, :class => "input medium"
-      %tr
-        %td
-          折扣
-        %td
-          = f.text_field :discount, :class => "input medium"
-      %tr
-        %td
-          活动商场
-        %td
-          = f.text_field :place, :class => "input medium"
-      %tr
-        %td
-          地址
-        %td
-          = f.text_field :address, :class => "input medium"
-      %tr
-        %td
-          电话
-        %td
-          = f.text_field :telphone, :class => "input medium"
+          = f.text_field :summary, :class => "input medium"
       %tr
         %td
           营业时间
         %td
-          = f.text_field :office_time, :class => "input medium"
+          = f.text_field :opening_date, :class => "input medium"
       %tr
         %td
-          公交信息
+          状态
         %td
-          = f.text_field :bus_info, :class => "input medium"
+          = f.select :status, [["新增审核", 0], ["进行中", 1], ["活动结束", 2]]
       %tr
         %td
-          网站
+          
         %td
-          = f.text_field :website, :class => "input medium"
+          = f.check_box :suggest
+          = label_tag(:activity_suggest, "是否显示在首页近期活动中（仅三位）")
       %tr
         %td
-          标签
+          
         %td
-          = f.text_field :tag_list, :class => "input medium"
-          %small
-            中文逗号分隔
+          = f.check_box :top
+          = label_tag(:activity_top, "是否设为首页每周活动（仅一位）")
+      %tr
+        %td
+          分享次数
+        %td
+          = f.text_field :shares_count, :class => "input small"
       %tr
         %td
           详情
         %td
-          = f.cktext_area("content", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Basic')
+          = f.text_area :content, :rows => 6, :cols => 40
       %tr
         %td
-          海报
+          Logo
+        %td
+          - unless activity.new_record?
+            = image_tag(activity.logo.url)
+            %br
+          = f.file_field :logo
+          60x60 px
+      %tr
+        %td
+          横幅海报
         %td
           - unless activity.new_record?
             = image_tag(activity.poster.url(:small))
             %br
           = f.file_field :poster
-      %tr
-        %td
-          资源类型
-        %td
-          = f.select :resource_type, [0, 1, 2, 3]
-          %span
-            0：屏蔽，1：审核，2：白名单，3：删除状态
+          950x300 px
       %tr
         %td
           

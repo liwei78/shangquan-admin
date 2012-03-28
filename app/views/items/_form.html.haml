@@ -58,9 +58,19 @@
           = f.select :store, [["否", false], ["是", true]]
       %tr
         %td
-          首页推荐
+          用户推荐
         %td
           = f.select :suggest, [["否", false], ["是", true]]
+      %tr
+        %td
+          首页推荐
+        %td
+          = f.select :top, [["否", false], ["是", true]]
+      %tr
+        %td
+          首页推荐排序
+        %td
+          = f.text_field :position, :class => "input small"
       %tr
         %td
           推荐描述

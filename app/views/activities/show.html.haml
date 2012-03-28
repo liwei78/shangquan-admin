@@ -17,52 +17,6 @@
           = @activity.title
       %tr
         %td
-          分类
-        %td
-          = @activity.activity_category
-      %tr
-        %td
-          地区
-        %td
-          = @activity.activity_area
-      %tr
-        %td
-          活动时间
-        %td
-          = @activity.schedule
-      %tr
-        %td
-          活动商场
-        %td
-          = @activity.place
-      %tr
-        %td
-          地址
-        %td
-          = @activity.address
-      %tr
-        %td
-          电话
-        %td
-          = @activity.telphone
-      %tr
-        %td
-          营业时间
-        %td
-          = @activity.office_time
-      %tr
-        %td
-          公交信息
-        %td
-          = @activity.bus_info
-      %tr
-        %td
-          标签
-        %td
-          - for tag in @activity.tag_list
-            = tag
-      %tr
-        %td
           详情
         %td
           = @activity.content.html_safe
