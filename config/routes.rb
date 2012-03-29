@@ -18,6 +18,7 @@ Admin::Application.routes.draw do
   end
   resources :companies
   resources :activities
+  resources :activity_reports
   resources :brands
   resources :items
   

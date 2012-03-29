@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   has_many :brand_users
   has_many :brands, :through => :brand_users
   has_many :items
+  has_many :activity_reports
   
   has_attached_file :avatar,
     :styles      => { :original => SITE_SETTINGS["avatar_original"], :thumb => SITE_SETTINGS["avatar_thumb"], :small => SITE_SETTINGS["avatar_small"] },
