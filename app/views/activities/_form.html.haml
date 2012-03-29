@@ -13,7 +13,7 @@
           = f.text_field :summary, :class => "input medium"
       %tr
         %td
-          营业时间
+          活动时间
         %td
           = f.text_field :opening_date, :class => "input medium"
       %tr
@@ -42,7 +42,7 @@
         %td
           详情
         %td
-          = f.text_area :content, :rows => 6, :cols => 40
+          = f.cktext_area("content", :input_html => {:cols => 10, :rows => 20}, :toolbar => 'Basic')
       %tr
         %td
           Logo
