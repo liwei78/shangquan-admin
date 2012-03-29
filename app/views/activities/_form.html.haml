@@ -57,7 +57,7 @@
           横幅海报
         %td
           - unless activity.new_record?
-            = image_tag(activity.poster.url(:small))
+            = image_tag(activity.poster.url(:middle))
             %br
           = f.file_field :poster
           950x300 px
