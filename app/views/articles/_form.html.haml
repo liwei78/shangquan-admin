@@ -43,7 +43,7 @@
                 %li
                   .del
                     = link_to image_tag("del.png"), del_pic_article_path(article, :pid => photo.id), :method => :post, :confirm => "确定删除吗？"
-                  = image_tag(photo.file.url(:small))
+                  = image_tag(photo.file.url(:small), :width => 120, :height => 120)
               .clearfix
       %tr#upload_div
         %td
