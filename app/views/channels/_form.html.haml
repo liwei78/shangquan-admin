@@ -1,0 +1,21 @@
+= form_for(channel) do |f|
+  %table.styled
+    %tbody
+      %tr
+        %td
+          名称
+        %td
+          = f.text_field :name, :class => "input"
+      %tr
+        %td
+          排位
+        %td
+          = f.text_field :position, :class => "input"
+      %tr
+        %td
+          
+        %td
+          - unless channel.new_record?
+            .right
+              = link_to "删除", channel_url(channel), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = submit_tag("确定", :class => "submit")

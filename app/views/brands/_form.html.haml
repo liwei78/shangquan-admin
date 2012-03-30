@@ -16,7 +16,12 @@
         %td
           Logo
         %td
-          = f.file_field :poster
+          = f.file_field :logo
+      %tr
+        %td
+          所属频道
+        %td
+          = f.select :channel_id, Channel.order('position asc').map{|ch| [ch.name, ch.id]}
       %tr
         %td
           资源类型
@@ -42,7 +47,6 @@
             .right
               = link_to "删除", brand_url(brand), :title => "删除", :method => "delete", :confirm => "点击确定继续"
           = submit_tag("确定", :class => "submit")
-          = link_to "返回", :back
             
           
             

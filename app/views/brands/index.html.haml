@@ -32,5 +32,15 @@
           %td{:colspan => 3}
             = will_paginate @brands, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
   .siderbox.right
-    = link_to raw("<strong>添加</strong>"), new_brand_url, :class => "add-link"
+    .mb
+      = link_to raw("<strong>添加</strong>"), new_brand_url, :class => "add-link"
+    .box.mb
+      .title
+        分类
+      .content
+        %ul.category_list
+          - for cha in Channel.order("position")
+            %li
+              = link_to cha.name, edit_channel_path(cha)
+          %li= link_to "添加频道", new_channel_path, :class => "add-link2"
   .clearfix

@@ -20,6 +20,7 @@ Admin::Application.routes.draw do
   resources :activities
   resources :activity_reports
   resources :brands
+  resources :channels
   resources :items
   
   match 'login'      => 'dashboard#login',      :as => :login,       :via => :get

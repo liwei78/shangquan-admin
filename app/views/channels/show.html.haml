@@ -1,0 +1,26 @@
+.banner
+  .layout
+    .title
+      查看
+.layout
+  .h20
+  %table.styled
+    %thead
+      %tr
+        %th
+          
+        %th
+          
+    %tbody
+      %tr
+        %td{:width => "10%"}
+          标题
+        %td
+          = @channel.name
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", channel_url(@channel), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_channel_url(@channel)
+          
