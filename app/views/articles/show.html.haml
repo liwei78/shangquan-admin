@@ -28,7 +28,7 @@
             图片
           %td
             - for photo in @article.photos
-              = image_tag(photo.file.url(:small))
+              = image_tag(photo.file.url(:small), :width => 120, :height => 120)
       - if @article.video_code.present?
         %tr
           %td

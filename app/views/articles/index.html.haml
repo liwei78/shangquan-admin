@@ -19,7 +19,7 @@
       %tbody
         - for article in @articles
           %tr
-            %td
+            %td{:width => '80%'}
               = link_to article.title, article_url(article)
             %td
               = link_to "编辑", edit_article_url(article)
