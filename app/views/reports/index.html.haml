@@ -1,0 +1,35 @@
+.banner
+  .layout
+    .title
+      活动管理
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  .h20
+  .widebox.left
+    %table.styled
+      %thead
+        %tr
+          %th
+            名称
+          %th
+            管理
+      %tbody
+        - for report in @reports
+          %tr
+            %td
+              = link_to "#{report.user.name}汇报的信息", report_url(report)
+            %td
+              = link_to "编辑", edit_report_url(report)
+      %tfoot
+        %tr
+          %td{:colspan => 2}
+            = will_paginate @reports, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+          
+  .siderbox.right
+    
+
+  .clearfix

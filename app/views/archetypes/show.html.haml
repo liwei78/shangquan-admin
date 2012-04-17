@@ -1,0 +1,41 @@
+.banner
+  .layout
+    .title
+      查看
+.layout
+  .h20
+  %table.styled
+    %thead
+      %tr
+        %th
+          
+        %th
+          
+    %tbody
+      %tr
+        %td{:width => "10%"}
+          名称
+        %td
+          = @archetype.name
+      %tr
+        %td
+          分类
+        %td
+          = @archetype.category.name
+      %tr
+        %td
+          Logo
+        %td
+          = image_tag @archetype.logo.url
+      %tr
+        %td
+          用户
+        %td
+          %ul
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", archetype_url(@archetype), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_archetype_url(@archetype)
+          

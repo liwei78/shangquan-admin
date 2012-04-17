@@ -1,0 +1,48 @@
+.banner
+  .layout
+    .title
+      列表
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+.layout
+  .h20
+  .widebox.left
+    %table.styled
+      %thead
+        %tr
+          %th
+            名称
+          %th
+            分类
+          %th
+            管理
+      %tbody
+        - for archetype in @archetypes
+          %tr
+            %td{:width => '60%'}
+              = link_to archetype.name, archetype_url(archetype, :from => "categories", :fromid => @category.id)
+            %td
+              = archetype.category.name if archetype.category.present?
+            %td
+              = link_to "编辑", edit_archetype_url(archetype, :from => "categories", :fromid => @category.id)
+      %tfoot
+        %tr
+          %td{:colspan => 3}
+            = will_paginate @archetypes, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+  .siderbox.right
+    .mb
+      = link_to raw("<strong>添加</strong>"), new_archetype_url(:from => "categories", :fromid => @category.id), :class => "add-link"
+    .box.mb
+      .title
+        频道
+      .content
+        %ul.category_list
+          - for cat in Category.order("position")
+            %li
+              = link_to cat.name, edit_category_path(cat)
+          %li= link_to "添加频道", new_category_path, :class => "add-link2"    
+
+    
+  .clearfix

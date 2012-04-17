@@ -24,17 +24,22 @@
             %li
               = link_to "文章管理", articles_url, :class => admin_nav?("articles")
             %li
+              = link_to "频道管理", channels_url, :class => admin_nav?("channels")            
+            %li
+              = link_to "分类管理", categories_url, :class => admin_nav?("categories")            
+            %li
+              = link_to "商圈管理", areas_url, :class => admin_nav?("areas")            
+            %li
               = link_to "活动管理", activities_url, :class => admin_nav?("activities")
             %li
               = link_to "商品管理", items_url, :class => admin_nav?("items")
             %li
-              = link_to "品牌管理", brands_url, :class => admin_nav?("brands")
-            %li
               = link_to "广告管理", banners_url, :class => admin_nav?("banners")
-            / %li
-            /   = link_to "视频管理", "", :class => admin_nav?("")
-            / %li
-            /   = link_to "动态管理", "", :class => admin_nav?("")
+            %li
+              = link_to "内容管理", "", :class => admin_nav?("")
+            %li
+              = link_to "用户线报", reports_url, :class => admin_nav?("reports")
+
             .clearfix
     .mainbox
       = yield

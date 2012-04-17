@@ -1,0 +1,40 @@
+.banner
+  .layout
+    .title
+      查看活动
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  %table.styled
+    %tbody
+      %tr
+        %td{:width => "20%"}
+          活动时间
+        %td
+          = @report.opening_date
+      %tr
+        %td
+          信息来源
+        %td
+          = @report.info_from
+      %tr
+        %td
+          详情
+        %td
+          = @report.content.html_safe
+      - for photo in @report.photos
+        %tr
+          %td
+            
+          %td
+            = link_to image_tag(photo.file.url, :width => 80), photo.file.url, :target => "_blank"
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", report_url(@report), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_report_url(@report)
+          

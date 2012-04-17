@@ -1,11 +1,30 @@
 class AreasController < ApplicationController
+  before_filter :set_admin_nav_flag
+  before_filter :need_admin_login
+
   # GET /areas
   # GET /areas.json
   def index
-    @areas = Area.all
+    @areas = Area.order("position asc")
 
     respond_to do |format|
       format.html # index.html.erb
+    end
+  end
+
+  def articles
+    @area  = Area.find(params[:id])
+    @articles = @area.articles.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def archetypes
+    @area  = Area.find(params[:id])
+    @archetypes = @area.archetypes.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -41,7 +60,7 @@ class AreasController < ApplicationController
 
     respond_to do |format|
       if @area.save
-        format.html { redirect_to articles_url, notice: 'Area was successfully created.' }
+        format.html { redirect_to archetypes_url, notice: 'Area was successfully created.' }
       else
         format.html { render action: "new" }
       end
@@ -55,7 +74,7 @@ class AreasController < ApplicationController
 
     respond_to do |format|
       if @area.update_attributes(params[:area])
-        format.html { redirect_to articles_url, notice: 'Area was successfully updated.' }
+        format.html { redirect_to archetypes_url, notice: 'Area was successfully updated.' }
       else
         format.html { render action: "edit" }
       end
@@ -69,7 +88,13 @@ class AreasController < ApplicationController
     @area.destroy
 
     respond_to do |format|
-      format.html { redirect_to articles_url }
+      format.html { redirect_to archetypes_url }
     end
+  end
+
+  private
+  
+  def set_admin_nav_flag
+    @admin_nav_flag = "areas"
   end
 end

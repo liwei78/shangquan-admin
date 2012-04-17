@@ -1,6 +1,4 @@
-# encoding: utf-8
 class Banner < ActiveRecord::Base
-  
   has_attached_file :poster,
     :styles          => {:original => SITE_SETTINGS["banner_original"]},
     :url             => SITE_SETTINGS["paperclip_url"],

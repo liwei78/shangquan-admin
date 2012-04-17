@@ -1,0 +1,85 @@
+= form_for(archetype, :multipart => true) do |f|
+  = hidden_field_tag :from, params[:from]
+  = hidden_field_tag :fromid, params[:fromid]
+  %table.styled
+    %tbody
+      %tr
+        %td
+          名称
+        %td
+          = f.text_field :name, :class => "input medium"
+      - unless archetype.new_record?      
+        %tr
+          %td
+            
+          %td
+            = image_tag(archetype.logo.url)
+      %tr
+        %td
+          logo
+        %td
+          = f.file_field :logo
+      %tr      
+        %td
+          频道
+        %td
+          = f.select :channel_id, Channel.order('position asc').map{|c| [c.name, c.id]}
+      %tr      
+        %td
+          类别
+        %td
+          = f.select :category_id, Category.order('position asc').map{|c| [c.name, c.id]}
+      %tr      
+        %td
+          商圈
+        %td
+          = f.select :area_id, [""] + Area.order('position asc').map{|a| [a.name, a.id]}
+      %tr
+        %td
+          排序
+        %td
+          = f.text_field :position, :class => "input small"
+          %small
+            数字小的在前
+      %tr
+        %td
+          热门指数
+        %td
+          = f.text_field :hot_count, :class => "input small"
+      %tr
+        %td
+          喜欢人数
+        %td
+          = f.text_field :likes_count, :class => "input small"
+      %tr
+        %td
+          分享人数
+        %td
+          = f.text_field :shares_count, :class => "input small"
+      %tr
+        %td
+          评论条数
+        %td
+          = f.text_field :comments_count, :class => "input small"
+      %tr
+        %td
+          得分数值
+        %td
+          = f.text_field :scores_count, :class => "input small"
+      %tr
+        %td
+          介绍
+        %td
+          = f.text_field :intro, :class => "input medium"
+
+      %tr
+        %td
+          
+        %td
+          - unless archetype.new_record?
+            .right
+              = link_to "删除", archetype_url(archetype), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = submit_tag("确定", :class => "submit")
+            
+          
+            

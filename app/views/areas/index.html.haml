@@ -11,26 +11,26 @@
   .h20
   .widebox.left
     .infoboxs
-      - for channel in @channels
+      - for area in @areas
         .box
           .boxtitle
-            = channel.name
+            = area.name
           .boxcontent
             %table.tiny
               %tr
                 %td
                   当前
-                  = channel.name
+                  = area.name
                 %td
-                  = link_to channel.archetypes.count, archetypes_channel_url(channel)
+                  = link_to area.archetypes.count, archetypes_area_url(area)
                   个
               %tr
                 %td
                   当前
-                  = channel.name
+                  = area.name
                   文章
                 %td
-                  = link_to channel.articles.count, articles_channel_url(channel)
+                  = link_to area.articles.count, articles_area_url(area)
                   篇
 
       .clearfix
@@ -40,15 +40,15 @@
       .content
         %ul
           %li= link_to "认领审核", archetype_applies_url
-          %li= link_to "用户线报", channels_reports_url
+          %li= link_to "用户线报", areas_reports_url
     .box.mb
       .title
-        频道
+        商圈
       .content
-        %ul.category_list
-          - for cha in Channel.order("position")
+        %ul.area_list
+          - for area in Area.order("position")
             %li
-              = link_to cha.name, edit_channel_path(cha)
-          %li= link_to "添加频道", new_channel_path, :class => "add-link2"    
+              = link_to area.name, edit_area_path(area)
+          %li= link_to "添加商圈", new_area_path, :class => "add-link2"    
     
   .clearfix

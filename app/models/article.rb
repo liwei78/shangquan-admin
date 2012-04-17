@@ -6,7 +6,13 @@ class Article < ActiveRecord::Base
   has_many :photos, :as => :klass
   has_many :comments, :as => :klass, :include => :user
   has_many :article_items
-  has_many :items, :through => :article_items
+  has_many :brand_articles
+  has_many :brands, :through => :brand_articles
+
+  belongs_to :area
+  belongs_to :channel
+  belongs_to :category
+
   acts_as_taggable
   
   scope :is_article, :conditions => ["articles.is_article = ?", true]
@@ -21,6 +27,10 @@ class Article < ActiveRecord::Base
   scope :auditing, :conditions => ["articles.state = ?", 1]
   scope :white,    :conditions => ["articles.state = ?", 2]
   scope :deleted,  :conditions => ["articles.state = ?", 3]
+  scope :allow_published,  :conditions => ["articles.state = ? or articles.state = ?", 1, 2]
+  
+  has_many :activity_articles
+  has_many :activities, :through => :activity_articles
   
   has_attached_file :poster,
     :styles          => { :original => SITE_SETTINGS["crop_original"], :small => "" },

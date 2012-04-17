@@ -4,12 +4,28 @@ class ChannelsController < ApplicationController
   before_filter :need_admin_login
   
   def index
-    @channels = Channel.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    @channels = Channel.order('position asc')
     respond_to do |format|
       format.html
     end
   end
-  
+
+  def articles
+    @channel  = Channel.find(params[:id])
+    @articles = @channel.articles.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def archetypes
+    @channel  = Channel.find(params[:id])
+    @archetypes = @channel.archetypes.paginate(:page => params[:page], :per_page => 20, :order => "id desc")
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def show
     @channel = Channel.find(params[:id])
   end
@@ -31,7 +47,7 @@ class ChannelsController < ApplicationController
     respond_to do |format|
       if @channel.save
         flash[:notice] = '添加成功'
-        format.html { redirect_to @channel }
+        format.html { redirect_to archetypes_url }
       else
         format.html { render :action => "new" }
       end
@@ -56,7 +72,7 @@ class ChannelsController < ApplicationController
     @channel.destroy
     respond_to do |format|
       flash[:notice] = '删除成功'
-      format.html { redirect_to(channels_url) }
+      format.html { redirect_to(archetypes_url) }
     end
   end
   

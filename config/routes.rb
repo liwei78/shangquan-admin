@@ -1,26 +1,47 @@
 Admin::Application.routes.draw do
 
+  resources :archetypes
+
+  resource  :archetype_applies
+
   resources :banners
 
-  resources :areas
+  resources :areas do
+    member do
+      get 'articles', 'archetypes'
+    end
+  end
 
-  resources :categories
+  resources :categories do
+    member do
+      get 'articles', 'archetypes'
+    end
+  end
 
   mount Ckeditor::Engine => '/ckeditor'
   
-  resources :users do
-    
-  end
+  resources :users
+
   resources :articles do
     member do
       post 'del_pic'
     end
   end
-  resources :companies
+
   resources :activities
-  resources :activity_reports
-  resources :brands
-  resources :channels
+
+  resources :reports do
+    collection do
+      get 'channels', 'categories', 'areas'
+    end
+  end
+
+  resources :channels do
+    member do
+      get 'articles', 'archetypes'
+    end
+  end
+
   resources :items
   
   match 'login'      => 'dashboard#login',      :as => :login,       :via => :get

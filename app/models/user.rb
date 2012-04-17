@@ -36,17 +36,38 @@ class User < ActiveRecord::Base
   before_create :encrypt_something
   before_update :change_password
   
-  has_many :articles, :order => "articles.id desc"
-  has_many :feeds,    :order => "feeds.id desc"
-  has_many :likes
-  has_many :items, :order => "items.id desc"
-  has_many :photos, :as => :klass
-  has_many :comments, :order => "comments.id desc"
-  has_many :messages, :order => "messages.id desc"
+  has_many :articles,      :order => "articles.id desc", :include => :comments
+  has_many :article_items, :order => "items.id desc"
+  has_many :photos,        :as => :klass
+  has_many :comments,      :order => "comments.id desc"
+  has_many :messages,      :order => "messages.id desc"
   has_many :brand_users
-  has_many :brands, :through => :brand_users
-  has_many :items
-  has_many :activity_reports
+  has_many :brands,        :through => :brand_users
+  has_many :reports
+  has_many :article_items
+  
+  # 用户与喜欢物品的关系
+  has_many :user_items
+  has_many :like_items, :through => :user_items, :source => :item
+  
+
+  # following and followed
+  has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy
+  has_many :following, :through => :relationships, :source => :followed
+  has_many :reverse_relationships, :foreign_key => "followed_id", :class_name => "Relationship", :dependent => :destroy
+  has_many :followers, :through => :reverse_relationships, :source => :follower
+  
+  def following?(followed)
+    relationships.find_by_followed_id(followed)
+  end
+
+  def follow!(followed)
+    relationships.create!(:followed_id => followed.id)
+  end
+
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy
+  end
   
   has_attached_file :avatar,
     :styles      => { :original => SITE_SETTINGS["avatar_original"], :thumb => SITE_SETTINGS["avatar_thumb"], :small => SITE_SETTINGS["avatar_small"] },
