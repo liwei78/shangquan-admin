@@ -1,0 +1,37 @@
+.banner
+  .layout
+    .title
+      查看
+.layout
+  .h20
+  %table.styled
+    %thead
+      %tr
+        %th
+          
+        %th
+          
+    %tbody
+      %tr
+        %td{:width => "10%"}
+          标题
+        %td
+          = @page.title
+      %tr
+        %td
+          类型
+        %td
+          = @page.category_name
+
+      %tr
+        %td
+          内容
+        %td
+          = simple_format(@page.content.html_safe)
+    %tfoot
+      %tr
+        %td{:colspan => 3}
+          .right
+            = link_to "删除", page_url(@page), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_page_url(@page)
+          

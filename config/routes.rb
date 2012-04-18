@@ -2,7 +2,9 @@ Admin::Application.routes.draw do
 
   resources :archetypes
 
-  resource  :archetype_applies
+  resources :archetype_applies
+
+  resources :pages
 
   resources :banners
 

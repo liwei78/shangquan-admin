@@ -1,0 +1,29 @@
+= form_for(page) do |f|
+  %table.styled
+    %tbody
+      %tr
+        %td
+          标题
+        %td
+          = f.text_field :title, :class => "input fullwidth"
+      %tr
+        %td
+          内容
+        %td
+          = f.text_area("content", :input_html => {:cols => 10, :rows => 20})
+      %tr
+        %td
+          类型
+        %td
+          = f.select :category_id, [["文档", 0], ["资讯", 1], ["公告", 2]]
+      %tr
+        %td
+          
+        %td
+          - unless page.new_record?
+            .right
+              = link_to "删除", page_url(page), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = submit_tag("确定", :class => "submit")
+          
+            
+          
