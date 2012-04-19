@@ -1,0 +1,32 @@
+= form_for(coupon) do |f|
+  = f.hidden_field :archetype_id
+  %table.styled
+    %tbody
+      %tr
+        %td
+          所属
+        %td
+          - if coupon.archetype.present?
+            = link_to coupon.archetype.name, coupon.archetype, :target => "_blank"
+      %tr
+        %td
+          日期说明
+        %td
+          = f.text_field :dateintro, :class => "input"
+      %tr
+        %td
+          介绍
+        %td
+          = f.text_area :content, :class => "input"
+
+      %tr
+        %td
+          
+        %td
+          - unless coupon.new_record?
+            .right
+              = link_to "删除", coupon_url(coupon), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = submit_tag("确定", :class => "submit")
+            
+          
+            

@@ -27,6 +27,12 @@
               = archetype.area.name if archetype.area.present?
             %td
               = link_to "编辑", edit_archetype_url(archetype, :from => "areas", :fromid => @area.id)
+              = link_to "优惠券", coupons_url(:from => "archetype", :fromid => archetype.id)
+              - if archetype.coupons.count > 0
+                %small
+                  = archetype.coupons.count
+                  张
+
       %tfoot
         %tr
           %td{:colspan => 3}

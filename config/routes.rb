@@ -1,5 +1,7 @@
 Admin::Application.routes.draw do
 
+  resources :coupons
+
   resources :archetypes
 
   resources :archetype_applies

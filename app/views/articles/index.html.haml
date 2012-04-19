@@ -12,20 +12,24 @@
     %table.styled
       %thead
         %tr
-          %th
+          %th{:width => '60%'}
             标题
+          %th
+            审核状态
           %th
             管理
       %tbody
         - for article in @articles
           %tr
-            %td{:width => '80%'}
+            %td
               = link_to article.content.truncate(100, :omission => "..."), article_url(article)
+            %td
+              = article.state_name
             %td
               = link_to "编辑", edit_article_url(article)
       %tfoot
         %tr
-          %td{:colspan => 2}
+          %td{:colspan => 3}
             = will_paginate @articles, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
   .siderbox.right
     .mb

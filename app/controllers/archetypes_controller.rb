@@ -20,7 +20,9 @@ class ArchetypesController < ApplicationController
   # GET /Archetypes/new.json
   def new
     @archetype = Archetype.new
-
+    @archetype.category_id = params[:fromid] if params[:from] == "categories"
+    @archetype.channel_id  = params[:fromid] if params[:from] == "channels"
+    @archetype.area_id     = params[:fromid] if params[:from] == "areas"
     respond_to do |format|
       format.html # new.html.erb
     end

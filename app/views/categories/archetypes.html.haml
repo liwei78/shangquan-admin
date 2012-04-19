@@ -27,6 +27,12 @@
               = archetype.category.name if archetype.category.present?
             %td
               = link_to "编辑", edit_archetype_url(archetype, :from => "categories", :fromid => @category.id)
+              = link_to "优惠券", coupons_url(:from => "archetype", :fromid => archetype.id)
+              - if archetype.coupons.count > 0
+                %small
+                  = archetype.coupons.count
+                  张优惠券
+
       %tfoot
         %tr
           %td{:colspan => 3}
