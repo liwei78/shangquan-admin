@@ -1,0 +1,46 @@
+.banner
+  .layout
+    .title
+      列表
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  .h20
+  .widebox.left
+    %table.styled
+      %thead
+        %tr
+          %th
+            申请人
+          %th
+            频道
+          %th
+            类别
+          %th
+            商圈
+          %th
+            管理
+      %tbody
+        - for apply in @applies
+          %tr
+            %td
+              = link_to apply.user.name, apply.user
+            %td
+              =  apply.archetype.channel.name if apply.archetype.present? and apply.archetype.channel.present?
+            %td
+              =  apply.archetype.category.name if apply.archetype.present? and apply.archetype.category.present?
+            %td
+              =  apply.archetype.area.name if apply.archetype.present? and apply.archetype.category.area.present?
+            %td
+              = link_to "编辑", edit_apply_url(apply, :from => params[:from])
+      %tfoot
+        %tr
+          %td{:colspan => 5}
+            = will_paginate @applys, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
+          
+  .siderbox.right
+    = link_to raw("<strong>添加</strong>"), new_apply_url, :class => "add-link"
+  .clearfix

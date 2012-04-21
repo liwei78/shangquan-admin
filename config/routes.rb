@@ -4,7 +4,7 @@ Admin::Application.routes.draw do
 
   resources :archetypes
 
-  resources :archetype_applies
+  resources :applies
 
   resources :pages
 

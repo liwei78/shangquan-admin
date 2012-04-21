@@ -1,0 +1,34 @@
+.banner
+  .layout
+    .title
+      查看活动
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  %table.styled
+    %tbody
+      %tr
+        %td{:width => "20%"}
+          资源
+        %td
+          = link_to apply.archetype.name, apply.archetype if apply.archetype.present?
+      %tr
+        %td
+          理由
+        %td
+          = apply.content.html_safe
+      %tr
+        %td
+          审核
+        %td
+          = apply.passed? ? "通过" : "未通过"
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          .right
+            = link_to "删除", apply_url(@apply), :title => "删除", :method => "delete", :confirm => "点击确定继续"
+          = link_to "编辑", edit_apply_url(@apply)
+          
