@@ -19,4 +19,8 @@ class Activity < ActiveRecord::Base
   def statue_name
     ["新增审核", "进行中", "活动结束"][self.status]
   end
+
+  def has_map?
+    self.latitude.present? and self.longitude.present?
+  end
 end

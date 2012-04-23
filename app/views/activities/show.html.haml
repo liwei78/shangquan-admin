@@ -1,3 +1,8 @@
+- content_for :header do
+  - if @activity.has_map?
+    = javascript_include_tag "http://api.51ditu.com/js/maps.js"
+    = javascript_include_tag "http://api.51ditu.com/js/search.js"
+
 .banner
   .layout
     .title
@@ -25,6 +30,21 @@
           海报
         %td
           = image_tag(@activity.poster.url)
+      %tr
+        %td
+          地图
+        %td
+          - if @activity.has_map?
+            #map{:style => "width:600px;height:400px"}
+            :javascript
+              map=new LTMaps("map");
+              map.addControl(new LTStandMapControl());
+              var point=new LTPoint(#{@activity.longitude.to_i}, #{@activity.latitude.to_i});
+              map.centerAndZoom(point,1); 
+              var marker=new LTMarker(point);
+              map.addOverLay(marker);
+
+
     %tfoot
       %tr
         %td{:colspan => 2}
