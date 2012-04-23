@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Activity < ActiveRecord::Base
   
   has_many :activity_articles
@@ -14,4 +15,8 @@ class Activity < ActiveRecord::Base
     :url             => SITE_SETTINGS["paperclip_url"],
     :path            => SITE_SETTINGS["paperclip_path"],
     :default_url     => "nopic.jpg"
+
+  def statue_name
+    ["新增审核", "进行中", "活动结束"][self.status]
+  end
 end

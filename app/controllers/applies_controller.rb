@@ -1,3 +1,4 @@
+# encoding: utf-8
 class AppliesController < ApplicationController
   before_filter :set_admin_nav_flag
   before_filter :need_admin_login
@@ -56,12 +57,24 @@ class AppliesController < ApplicationController
 
     respond_to do |format|
       if @apply.update_attributes(params[:apply])
-        if params[:from].present?
-          backto = url_for(:controller => params[:from])
+        archetype = Archetype.find(@apply.archetype_id)
+        if @apply.passed
+          Message.create(
+            :user_id => @apply.user_id,
+            :sysmsg  => true,
+            :title   => "您的资源申请已经通过了",
+            :content => "您申请的 <a target='_blank' href='/archetypes/#{archetype.id}'>#{archetype.name}</a> 已经通过审核。"
+          )
         else
-          backto = applies_url
+          Message.create(
+            :user_id => @apply.user_id,
+            :sysmsg  => true,
+            :title   => "您的资源申请被拒绝了",
+            :content => "您申请的 <a target='_blank' href='/archetypes/#{archetype.id}'>#{archetype.name}</a> 已经被拒绝了。"
+          )
         end
-        format.html { redirect_to backto, notice: 'Apply was successfully updated.' }
+
+        format.html { redirect_to applies_url, notice: 'Apply was successfully updated.' }
       else
         format.html { render action: "edit" }
       end
