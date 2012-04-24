@@ -23,7 +23,7 @@
         %td
           频道
         %td
-          = f.select :channel_id, Channel.order('position asc').map{|c| [c.name, c.id]}
+          = f.select :channel_id, [""] + Channel.order('position asc').map{|c| [c.name, c.id]}
       %tr      
         %td
           类别

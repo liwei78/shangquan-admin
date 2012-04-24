@@ -3,6 +3,11 @@
     %tbody
       %tr
         %td
+          所属资源
+        %td
+          = link_to activity.archetype.name, activity.archetype, :target => "_blank"
+      %tr
+        %td
           标题
         %td
           = f.text_field :title, :class => "input medium"
