@@ -1,7 +1,17 @@
+- content_for :header do
+  - if @archetype.has_map?
+    = javascript_include_tag "http://api.51ditu.com/js/maps.js"
+    = javascript_include_tag "http://api.51ditu.com/js/search.js"
+
 .banner
   .layout
     .title
       查看
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
 .layout
   .h20
   %table.styled
@@ -29,9 +39,18 @@
           = image_tag @archetype.logo.url
       %tr
         %td
-          用户
+          地图
         %td
-          %ul
+          - if @archetype.has_map?
+            #map{:style => "width:600px;height:400px"}
+            :javascript
+              map=new LTMaps("map");
+              map.addControl(new LTStandMapControl());
+              var point=new LTPoint(#{@archetype.longitude.to_i}, #{@archetype.latitude.to_i});
+              map.centerAndZoom(point,1); 
+              var marker=new LTMarker(point);
+              map.addOverLay(marker);
+
     %tfoot
       %tr
         %td{:colspan => 2}

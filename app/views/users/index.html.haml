@@ -38,6 +38,11 @@
             = will_paginate @users, :param_name => "page", :previous_label => "上一页", :next_label => "下一页"
           
   .siderbox.right
-    = link_to raw("<strong>添加</strong>"), new_user_url, :class => "add-link"
+    .mb
+      = link_to raw("<strong>添加</strong>"), new_user_url, :class => "add-link"
+    .box.mb
+      .content
+        %ul
+          %li= link_to "积分管理", scores_url
   .clearfix
           

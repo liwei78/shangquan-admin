@@ -1,0 +1,39 @@
+.banner
+  .layout
+    .title
+      列表
+- unless flash[:notice].nil?
+  .noticediv
+    .layout
+      = flash[:notice]
+
+.layout
+  .h20
+  .widebox.left
+    %table.styled
+      %thead
+        %tr
+          %th
+            标识
+          %th
+            说明
+          %th
+            分值
+          %th
+            
+      %tbody
+        - for score in @scores
+          = form_for(score, :remote => true, :html => {:id => "f#{score.id}"}) do |f|
+            %tr{:id => "tr#{score.id}"}
+              %td
+                = score.flag
+              %td
+                = f.text_field :intro, :class => "input small"
+              %td
+                = f.text_field :point, :class => "input small"
+              %td
+                = f.submit "更新"
+          
+  .siderbox.right
+    
+  .clearfix

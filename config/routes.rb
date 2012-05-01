@@ -1,5 +1,7 @@
 Admin::Application.routes.draw do
 
+  resources :scores
+
   resources :coupons
 
   resources :archetypes
