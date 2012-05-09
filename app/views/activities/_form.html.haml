@@ -1,11 +1,12 @@
 = form_for(activity) do |f|
   %table.styled
     %tbody
-      %tr
-        %td
-          所属资源
-        %td
-          = link_to activity.archetype.name, activity.archetype, :target => "_blank"
+      - if activity.archetype.present?
+        %tr
+          %td
+            所属资源
+          %td
+            = link_to activity.archetype.name, activity.archetype, :target => "_blank"
       %tr
         %td
           标题
@@ -47,7 +48,7 @@
         %td
           详情
         %td
-          = f.text_area("content", :cols => 60, :rows => 20)
+          = f.text_area("content", :cols => 60, :rows => 20, :class => "textarea")
       %tr
         %td
           Logo

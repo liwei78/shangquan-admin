@@ -14,11 +14,6 @@
     %tbody
       %tr
         %td{:width => "10%"}
-          标题
-        %td
-          = @article.title
-      %tr
-        %td
           封面
         %td
           = image_tag @article.poster.url
@@ -45,7 +40,7 @@
         %td
           内容
         %td
-          = @article.content.html_safe
+          = @article.content
     %tfoot
       %tr
         %td{:colspan => 3}

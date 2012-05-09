@@ -7,32 +7,17 @@
 = form_for(article) do |f|
   %table.styled
     %tbody
-      %tr
-        %td
-          文章类型
-        %td
-          = f.check_box :is_article
-      %tr
-        %td
-          标题
-        %td
-          = f.text_field :title, :class => "input fullwidth"
       - if article.poster.present?
         %tr
           %td
             封面预览
           %td
-            = image_tag article.poster.url
+            = link_to image_tag(article.poster.url(:small)), article.poster.url, :target => "_blank"
       %tr
         %td
           封面
         %td
           = f.file_field :poster
-      %tr
-        %td
-          图集类型
-        %td
-          = f.check_box :is_photo
       - if article.photos.present?
         %tr
           %td
@@ -61,9 +46,9 @@
         %td
           标签
         %td.grey
-          = f.text_field :tag_list, :class => "input medium"
+          = f.text_field :tag_list, :class => "input small"
           %small
-            中文逗号分隔
+            空格分隔
 
       %tr
         %td
@@ -90,7 +75,7 @@
         %td
           内容
         %td
-          = f.text_area("content", :input_html => {:cols => 60, :rows => 20}, :class => "input")
+          = f.text_area("content", :cols => 100, :rows => 20, :class => "textarea")
       %tr
         %td
           资源状态
