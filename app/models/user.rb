@@ -14,12 +14,12 @@ class User < ActiveRecord::Base
     :confirmation => true,
     :length => {:within => 4..20},
     :on => :create
-    
+
   validates :password_confirmation,
     :presence => true,
     :length => {:within => 4..20},
     :on => :create
-    
+  
   validates :password,
     :allow_blank => true,
     :length => {:within => 4..20},

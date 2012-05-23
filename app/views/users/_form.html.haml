@@ -13,6 +13,11 @@
           = f.password_field :password, :class => "input"
       %tr
         %td
+          确认密码
+        %td
+          = f.password_field :password_confirmation, :class => "input"
+      %tr
+        %td
           显示名称
         %td
           = f.text_field :name, :class => "input"

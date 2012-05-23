@@ -22,6 +22,8 @@ settings: &common
   brand_original: "180x100"
   brand_small: "118x60"
   
+  archetype_original: "180x180"
+  
   activity_original: "950x300"
   activity_middle: "446x200"
   
